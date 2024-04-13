@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 342493054}
   - component: {fileID: 342493053}
   - component: {fileID: 342493055}
+  - component: {fileID: 342493056}
   m_Layer: 6
   m_Name: Tilemap
   m_TagString: Ground
@@ -1795,12 +1796,31 @@ TilemapCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!251 &342493056
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342493051}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &418359132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,6 +2826,37 @@ MonoBehaviour:
   smoothing: 0.3
   maxPos: {x: 4.14, y: 4.91}
   minPos: {x: -12.13, y: 0.07}
+--- !u!1 &580893169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 580893170}
+  m_Layer: 0
+  m_Name: Character
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &580893170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580893169}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1024.0916, y: 401.53403, z: -6.3493233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &755953899
 GameObject:
   m_ObjectHideFlags: 0
@@ -4498,7 +4549,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 281925398}
         m_TargetAssemblyTypeName: HomeController, Assembly-CSharp
-        m_MethodName: Exit
+        m_MethodName: BackHomeScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4729,3 +4780,4 @@ SceneRoots:
   - {fileID: 946254887}
   - {fileID: 1162220587}
   - {fileID: 281925399}
+  - {fileID: 580893170}

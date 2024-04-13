@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class HomeController : MonoBehaviour
 {
+    string SceneName;
     public GameObject panel;
     public Button SettingBtn;
 
@@ -19,7 +20,7 @@ public class HomeController : MonoBehaviour
 
     public void StartBtn()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("LevelMenu");
     }
 
     public void ExitBtn()
@@ -31,22 +32,39 @@ public class HomeController : MonoBehaviour
     {
         panel.SetActive(true);
         SettingBtn.enabled = false;
+        Time.timeScale = 0;
     }
 
     public void Resume()
     {
         panel.SetActive(false);
         SettingBtn.enabled = true;
+        Time.timeScale = 1;
     }
 
     public void Restart()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(SceneName);
+        Time.timeScale = 1;
 
     }
 
-    public void Exit()
+    public void BackHomeScene()
     {
         SceneManager.LoadScene("Home");
+        Time.timeScale = 1;
+    }
+
+    public void BtnLV1()
+    {
+        SceneName = "SampleScene";
+        SceneManager.LoadScene(SceneName);
+    }
+
+    public void ChangeCharacterScene()
+    {
+        SceneName = "ChangeCharacterScene";
+        SceneManager.LoadScene(SceneName);
     }
 }
