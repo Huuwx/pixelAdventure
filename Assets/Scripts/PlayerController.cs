@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour
     public Text Point;
 
     public float JumpForce = 0.5f;
-    int countJump = 0;
+    public static int countJump = 0;
 
     public Rigidbody2D Rigidbody;
     float horizontal;
 
-    public LayerMask groundLayer;
+    public GameObject PointGroundCheck;
+    public Vector2 sizeGroundCheck;
     public float groundCheckRadius = 0.2f;
     int Pointn = 0;
     // Start is called before the first frame update
@@ -33,19 +34,26 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         AMoving();
         Jump();
+        grounded = CheckGround();
         animator.SetBool("grounded", grounded);
         Point.text = Pointn.ToString();
-        if(countJump == 0 && grounded == false)
-        {
-            Fall = true;
-            animator.SetBool("Fall", Fall);
-        }
+        CheckFall();
     }
 
     private void FixedUpdate()
     {
         Movement();
     }
+
+    public void CheckFall()
+    {
+        if (Rigidbody.velocity.y < 0)
+        {
+            Fall = true;
+            animator.SetBool("Fall", Fall);
+        }
+    }
+
     public void Jump()
     {
         if ((Input.GetButtonDown("Jump") && grounded) || Input.GetButtonDown("Jump") && countJump < 2)
@@ -60,12 +68,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("Jump");
             }
             countJump += 1;
-            grounded = false;
             Debug.Log(countJump);
-        }
-        else if (grounded)
-        {
-            countJump = 0;
         }
     }
     public void Movement()
@@ -89,26 +92,48 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsMoving", horizontal != 0);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private bool CheckGround()
     {
-        if(collision.gameObject.tag == "Ground")
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(PointGroundCheck.transform.position, sizeGroundCheck, 0);
+        foreach(Collider2D collider in colliders)
         {
-            grounded = true;
-            Fall = false;
-            animator.SetBool("Fall", Fall);
+            if (collider.tag == "Ground")
+            {
+                Fall = false;
+                animator.SetBool("Fall", Fall);
+                return true;
+            }
         }
-        if(collision.gameObject.tag == "MelonFruit")
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(PointGroundCheck.transform.position, new Vector3(sizeGroundCheck.x, sizeGroundCheck.y, 1f));
+    }
+
+    //public void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Ground")
+    //    {
+    //        countJump = 0;
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MelonFruit")
         {
             Pointn++;
             collision.gameObject.SetActive(false);
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Ground")
-        {
-            grounded = false;
-        }
-    }
+    //public void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Ground")
+    //    {
+    //        grounded = false;
+    //    }
+    //}
 }
