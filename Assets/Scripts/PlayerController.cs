@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool grounded;
     private bool Fall = false;
+    public static bool NinjaFrog;
+    public static bool VirtualGuy;
+    public static bool MaskDude;
     public Text Point;
 
     public float JumpForce = 0.5f;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
         Pointn = 0;
         Rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        CheckCharacter();
     }
 
     // Update is called once per frame
@@ -124,8 +128,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "MelonFruit")
         {
-            Pointn++;
             collision.gameObject.SetActive(false);
+            Pointn++;
         }
     }
 
@@ -136,4 +140,20 @@ public class PlayerController : MonoBehaviour
     //        grounded = false;
     //    }
     //}
+
+    void CheckCharacter()
+    {
+        if(NinjaFrog == true)
+        {
+            CharacterSelection.Instance.SetActiveCharacter(true, false, false);
+        }
+        else if(VirtualGuy == true)
+        {
+            CharacterSelection.Instance.SetActiveCharacter(false, true, false);
+        }
+        else
+        {
+            CharacterSelection.Instance.SetActiveCharacter(false, false, true);
+        }
+    }
 }

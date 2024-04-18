@@ -67,4 +67,25 @@ public class HomeController : MonoBehaviour
         SceneName = "ChangeCharacterScene";
         SceneManager.LoadScene(SceneName);
     }
+
+    public void NinJaFrogBtn()
+    {
+        PlayerController.NinjaFrog = true;
+        PlayerController.VirtualGuy = false;
+        PlayerController.MaskDude = false;
+    }
+
+    public void VirtualGuyBtn()
+    {
+        PlayerController.NinjaFrog = false;
+        PlayerController.VirtualGuy = true;
+        PlayerController.MaskDude = false;
+    }
+
+    public void MaskDudeBtn()
+    {
+        PlayerController.NinjaFrog = false;
+        PlayerController.VirtualGuy = false;
+        PlayerController.MaskDude = true;
+    }
 }
