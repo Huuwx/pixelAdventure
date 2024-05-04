@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class SoundController : MonoBehaviour
 {
-    public static SoundController Instance { get; private set; }
+    private static SoundController instance;
+
+    public static SoundController Instance { get => instance; }
 
 
     [SerializeField] private List<AudioClip> sources = new List<AudioClip>();
+
+    public List<AudioClip> Sources { get =>  sources; }
 
     private AudioSource audiosource;
 
     // Start is called before the first frame update
     void Start()
     {
-        audiosource= GetComponent<AudioSource>();
+        if(SoundController.instance != null) { Debug.LogError("Only 1 SoundController allow to exist!"); }
+        SoundController.instance = this;
+        audiosource = GetComponent<AudioSource>();
     }
 
-    public List<AudioClip> getSources()
-    {
-        return sources;
-    }
-
-    public void PlayMusic(int index)
+    public void PlayMusic(AudioClip clip)
     {
         audiosource.Stop();
-        audiosource.PlayOneShot(sources[index]);
+        audiosource.clip = clip;
+        audiosource.Play();
     }
 }

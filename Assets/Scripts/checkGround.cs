@@ -22,6 +22,20 @@ public class checkGround : MonoBehaviour
         {
             PlayerController.countJump = 0;
         }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.SetActive(false);
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MelonFruit")
+        {
+            PlayerController.Pointn += 1;
+            collision.gameObject.SetActive(false);
+        }
+        
     }
 
 }

@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public GameObject PointGroundCheck;
     public Vector2 sizeGroundCheck;
     public float groundCheckRadius = 0.2f;
-    int Pointn = 0;
+    public static int Pointn = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -124,14 +124,14 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "MelonFruit")
-        {
-            collision.gameObject.SetActive(false);
-            Pointn++;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "MelonFruit")
+    //    {
+    //        collision.gameObject.SetActive(false);
+    //        Pointn++;
+    //    }
+    //}
 
     //public void OnCollisionExit2D(Collision2D collision)
     //{
