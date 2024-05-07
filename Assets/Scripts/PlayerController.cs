@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         Pointn = 0;
         Rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        CheckCharacter();
+        //CheckCharacter();
     }
 
     // Update is called once per frame
@@ -143,11 +143,11 @@ public class PlayerController : MonoBehaviour
 
     void CheckCharacter()
     {
-        if(NinjaFrog == true)
+        if (NinjaFrog == true)
         {
             CharacterSelection.Instance.SetActiveCharacter(true, false, false);
         }
-        else if(VirtualGuy == true)
+        else if (VirtualGuy == true)
         {
             CharacterSelection.Instance.SetActiveCharacter(false, true, false);
         }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class checkGround : MonoBehaviour
 {
+
+    public AudioClip eatFruit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class checkGround : MonoBehaviour
         else if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.SetActive(false);
+            
         }
     }
 
@@ -34,6 +38,7 @@ public class checkGround : MonoBehaviour
         {
             PlayerController.Pointn += 1;
             collision.gameObject.SetActive(false);
+            SoundController.Instance.PlaySound(eatFruit);
         }
         
     }

@@ -23,6 +23,11 @@ public class HomeController : MonoBehaviour
         SceneManager.LoadScene("LevelMenu");
     }
 
+    public void SoundSettingScene()
+    {
+        SceneManager.LoadScene("SoundSetting");
+    }
+
     public void ExitBtn()
     {
         Application.Quit();

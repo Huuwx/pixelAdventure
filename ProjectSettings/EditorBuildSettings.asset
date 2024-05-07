@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ChangeCharacterScene.unity
     guid: 5092e13f627c6ec45a484964807b2b09
   - enabled: 1
+    path: Assets/Scenes/SoundSetting.unity
+    guid: 629ad475f76e8d44fa79b4888ccfb13b
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

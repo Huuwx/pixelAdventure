@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement Instance { get; private set; }
+    private static PlayerMovement instance;
+
+    public static PlayerMovement Instance { get => instance; }
 
     // Start is called before the first frame update
     void Start()
     {
-        Instance = this;
+        if (PlayerMovement.instance != null) { Debug.LogError("Only 1 SoundController allow to exist!"); }
+        PlayerMovement.instance = this;
     }
 
     // Update is called once per frame
