@@ -677,6 +677,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4438302411220353250, guid: a0a7a96b3fe81954d911f1e82d3e4794, type: 3}
   m_PrefabInstance: {fileID: 1090369370402158686}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &308561364 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3047198136335649972, guid: a0a7a96b3fe81954d911f1e82d3e4794, type: 3}
+  m_PrefabInstance: {fileID: 1090369370402158686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &308561366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308561350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab685c6ee263ff428302eab157f4935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpForce: 7
+  Rigidbody: {fileID: 308561364}
 --- !u!1 &342493051
 GameObject:
   m_ObjectHideFlags: 0
@@ -5824,6 +5843,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1125995136}
     - target: {fileID: 1857909581991313418, guid: a0a7a96b3fe81954d911f1e82d3e4794, type: 3}
+      propertyPath: groundCheckRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857909581991313418, guid: a0a7a96b3fe81954d911f1e82d3e4794, type: 3}
       propertyPath: sizeGroundCheck.x
       value: 1
       objectReference: {fileID: 0}
@@ -5889,6 +5912,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1110506291942493882, guid: a0a7a96b3fe81954d911f1e82d3e4794, type: 3}
       insertIndex: -1
       addedObject: {fileID: 308561356}
+    - targetCorrespondingSourceObject: {fileID: 1110506291942493882, guid: a0a7a96b3fe81954d911f1e82d3e4794, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 308561366}
   m_SourcePrefab: {fileID: 100100000, guid: a0a7a96b3fe81954d911f1e82d3e4794, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    private static PlayerController instance;
+
+    public static PlayerController Instance { get => instance; }
+
     private Animator animator;
     private bool grounded;
     private bool Fall = false;
@@ -13,93 +18,49 @@ public class PlayerController : MonoBehaviour
     public static bool MaskDude;
     public Text Point;
 
-    public float JumpForce = 0.5f;
-    public static int countJump = 0;
-
-    public Rigidbody2D Rigidbody;
     float horizontal;
 
     public GameObject PointGroundCheck;
     public Vector2 sizeGroundCheck;
     public float groundCheckRadius = 0.2f;
     public static int Pointn = 0;
+
+    //public float JumpForce = 0.5f;
+    //public static int countJump = 0;
+    //public Rigidbody2D Rigidbody;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         Pointn = 0;
-        Rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         //CheckCharacter();
+        //Rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        AMoving();
-        Jump();
+        horizontal = PlayerMovement.Instance.GetMovInput();
+        PlayerMovement.Instance.AMoving();
+        PlayerMovement.Instance.Jump();
         grounded = CheckGround();
         animator.SetBool("grounded", grounded);
         Point.text = Pointn.ToString();
-        CheckFall();
+        PlayerMovement.Instance.CheckFall();
     }
 
     private void FixedUpdate()
     {
-        Movement();
-    }
-
-    public void CheckFall()
-    {
-        if (Rigidbody.velocity.y < 0)
-        {
-            Fall = true;
-            animator.SetBool("Fall", Fall);
-        }
-    }
-
-    public void Jump()
-    {
-        if ((Input.GetButtonDown("Jump") && grounded) || Input.GetButtonDown("Jump") && countJump < 2)
-        {
-            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpForce);
-            if(countJump == 1)
-            {
-                animator.SetTrigger("DJump");
-            }
-            else
-            {
-                animator.SetTrigger("Jump");
-            }
-            countJump += 1;
-            Debug.Log(countJump);
-        }
-    }
-    public void Movement()
-    {
-        Vector2 pos = transform.position;
-        pos.x = pos.x + 3.0f * horizontal * Time.deltaTime;
-        transform.position = pos;
-    }
-    public void AMoving()
-    {
-        //Flip Player when moving left-right
-        if (horizontal > 0.01f)
-        {
-            transform.localScale = Vector3.one;
-        }
-        else if (horizontal < -0.01f)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-
-        animator.SetBool("IsMoving", horizontal != 0);
+        PlayerMovement.Instance.Movement(horizontal);
     }
 
     private bool CheckGround()
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(PointGroundCheck.transform.position, sizeGroundCheck, 0);
-        foreach(Collider2D collider in colliders)
+        foreach (Collider2D collider in colliders)
         {
             if (collider.tag == "Ground")
             {
@@ -115,6 +76,77 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.DrawWireCube(PointGroundCheck.transform.position, new Vector3(sizeGroundCheck.x, sizeGroundCheck.y, 1f));
     }
+
+    void CheckCharacter()
+    {
+        if (NinjaFrog == true)
+        {
+            CharacterSelection.Instance.SetActiveCharacter(true, false, false);
+        }
+        else if (VirtualGuy == true)
+        {
+            CharacterSelection.Instance.SetActiveCharacter(false, true, false);
+        }
+        else
+        {
+            CharacterSelection.Instance.SetActiveCharacter(false, false, true);
+        }
+    }
+
+    //public void CheckFall()
+    //{
+    //    if (Rigidbody.velocity.y < 0)
+    //    {
+    //        Fall = true;
+    //        animator.SetBool("Fall", Fall);
+    //    }
+    //}
+
+    //public void Jump()
+    //{
+    //    if ((Input.GetButtonDown("Jump") && grounded) || Input.GetButtonDown("Jump") && countJump < 2)
+    //    {
+    //        JumpA();
+    //        if(countJump == 1)
+    //        {
+    //            animator.SetTrigger("DJump");
+    //        }
+    //        else
+    //        {
+    //            animator.SetTrigger("Jump");
+    //        }
+    //        countJump += 1;
+    //        Debug.Log(countJump);
+    //    }
+    //}
+
+    //public void JumpA()
+    //{
+    //    Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpForce);
+    //}
+
+    //public void Movement()
+    //{
+    //    Vector2 pos = transform.position;
+    //    pos.x = pos.x + 3.0f * horizontal * Time.deltaTime;
+    //    transform.position = pos;
+    //}
+    //public void AMoving()
+    //{
+    //    //Flip Player when moving left-right
+    //    if (horizontal > 0.01f)
+    //    {
+    //        transform.localScale = Vector3.one;
+    //    }
+    //    else if (horizontal < -0.01f)
+    //    {
+    //        transform.localScale = new Vector3(-1, 1, 1);
+    //    }
+
+    //    animator.SetBool("IsMoving", horizontal != 0);
+    //}
+
+
 
     //public void OnCollisionEnter2D(Collision2D collision)
     //{
@@ -141,19 +173,5 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-    void CheckCharacter()
-    {
-        if (NinjaFrog == true)
-        {
-            CharacterSelection.Instance.SetActiveCharacter(true, false, false);
-        }
-        else if (VirtualGuy == true)
-        {
-            CharacterSelection.Instance.SetActiveCharacter(false, true, false);
-        }
-        else
-        {
-            CharacterSelection.Instance.SetActiveCharacter(false, false, true);
-        }
-    }
+
 }

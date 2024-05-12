@@ -23,12 +23,14 @@ public class checkGround : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            PlayerController.countJump = 0;
+            PlayerMovement.countJump = 0;
+            PlayerMovement.Instance.setFloatA(0);
         }
         else if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.SetActive(false);
-            
+            PlayerMovement.Instance.SetTriggerJump();
+            PlayerMovement.Instance.JumpA();
         }
     }
 
