@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
 
     public GameObject PointGroundCheck;
     public Vector2 sizeGroundCheck;
-    public float groundCheckRadius = 0.2f;
     public static int Pointn = 0;
 
     //public float JumpForce = 0.5f;

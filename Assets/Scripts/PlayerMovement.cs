@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement Instance { get => instance; }
 
+    public float moveSpeed = 3f;
     public float JumpForce = 7f;
     public static int countJump = 0;
 
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public void Movement(float horizontal)
     {
         Vector2 pos = transform.position;
-        pos.x = pos.x + 3.0f * horizontal * Time.deltaTime;
+        pos.x = pos.x + moveSpeed * horizontal * Time.deltaTime;
         transform.position = pos;
     }
 
