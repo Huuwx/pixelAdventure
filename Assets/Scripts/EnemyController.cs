@@ -14,10 +14,12 @@ public class EnemyController : MonoBehaviour
     public Vector2 sizePointCheck;
 
     Rigidbody2D rigid;
+    private Animator animator;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,11 +32,26 @@ public class EnemyController : MonoBehaviour
     {
         CheckGround();
         Movement();
+        //FlipEnemies();
     }
 
     public void Movement()
     {
         rigid.velocity = new Vector2(Movdirection*MoveSpeed, rigid.velocity.y);
+    }
+
+    public void FlipEnemies()
+    {
+        if (Movdirection < 0.01f)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (Movdirection > -0.01f)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        animator.SetBool("IsMoving", Movdirection != 0);
     }
 
     private void CheckGround()

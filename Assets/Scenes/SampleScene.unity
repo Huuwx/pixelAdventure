@@ -5174,6 +5174,7 @@ GameObject:
   - component: {fileID: 1451427743}
   - component: {fileID: 1451427746}
   - component: {fileID: 1451427747}
+  - component: {fileID: 1451427748}
   m_Layer: 8
   m_Name: Chicken
   m_TagString: Enemy
@@ -5337,6 +5338,27 @@ MonoBehaviour:
   MoveSpeed: 1.5
   PointCheck: {fileID: 1110993789}
   sizePointCheck: {x: 3.23, y: 0.67}
+--- !u!95 &1451427748
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451427742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2db8164c2e61465439979f551e6a2875, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1483916681
 GameObject:
   m_ObjectHideFlags: 0
