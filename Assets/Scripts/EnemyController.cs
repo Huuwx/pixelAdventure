@@ -10,6 +10,10 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyController : MonoBehaviour
 {
 
+    private static EnemyController instance;
+
+    public static EnemyController Instance { get => instance; }
+
     public float Movdirection = 0f;
     public float MoveSpeed = 1.5f;
     private bool isMoving = false;
@@ -19,26 +23,51 @@ public class EnemyController : MonoBehaviour
     public Vector2 sizePointCheck;
     public GameObject CheckposPlayer;
     public Vector2 sizeCheckPosPlayer;
+    public GameObject CheckdamPlayer;
+    public Vector2 sizeCheckdamPlayer;
 
     Rigidbody2D rigid;
     private Animator animator;
 
+    public float health;
+    public float Health
+    {
+        set
+        {
+            //animator.SetTrigger("IsTakeDamage");
+            Debug.Log(value);
+            health = value;
+            if (health <= 0)
+            {
+                Defeated();
+            }
+        }
+        get { return health; }
+    }
+
     void Start()
     {
+        if (EnemyController.instance != null) { Debug.LogError("Only 1 SoundController allow to exist!"); }
+        EnemyController.instance = this;
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Defeated()
     {
+        animator.SetTrigger("Dead");
+    }
 
+    public void RemoveEnemy()
+    {
+        gameObject.SetActive(false);
+        Debug.Log("ga chet");
     }
 
     private void FixedUpdate()
     {
-        CheckDistance();
         CheckPlayer();
+        damagePlayer();
         Movement();
         FlipEnemies();
     }
@@ -57,6 +86,19 @@ public class EnemyController : MonoBehaviour
         else if (Movdirection > -0.01f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+    private void damagePlayer()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(CheckdamPlayer.transform.position, sizeCheckdamPlayer, 0);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.tag == "Player")
+            {
+                Debug.Log("hihi");
+                PlayerController.Instance.Health -= 1;
+            }
         }
     }
 
@@ -98,37 +140,6 @@ public class EnemyController : MonoBehaviour
                     return;
                 }
             }
-            else if (collider.tag == "Player")
-            {
-                if (target.position.x < transform.position.x)
-                {
-                    Movdirection = -1f;
-                }
-                else
-                {
-                    Movdirection = 1f;
-                }
-                isMoving = true;
-                animator.SetBool("IsMoving", isMoving);
-                Vector3 temp = Vector3.MoveTowards(transform.position, target.position, MoveSpeed * Time.deltaTime);
-                rigid.MovePosition(temp);
-            }
-            else
-            {
-                Movdirection = 0f;
-                isMoving = false;
-                animator.SetBool("IsMoving", isMoving);
-            }
-        }
-    }
-
-    public void CheckDistance()
-    {
-        if(Mathf.Abs(transform.position.x - target.position.x) <= 2f)
-        {
-            Movdirection = 0f;
-            isMoving = false;
-            animator.SetBool("IsMoving", isMoving);
         }
     }
 
@@ -145,14 +156,14 @@ public class EnemyController : MonoBehaviour
                     Movdirection = -1f;
                     distance = new Vector3(-2f, 0, 0);
                 }
-                else if(target.position.x > transform.position.x)
+                else if (target.position.x > transform.position.x)
                 {
                     Movdirection = 1f;
                     distance = new Vector3(2f, 0, 0);
                 }
                 isMoving = true;
                 animator.SetBool("IsMoving", isMoving);
-                if (Mathf.Abs(transform.position.x - target.position.x) <= 2f)
+                if (Mathf.Abs(transform.position.x - target.position.x) <= 1.8f)
                 {
                     Movdirection = 0f;
                     isMoving = false;
@@ -160,7 +171,7 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
-        if(colliders.Length == 1)
+        if (colliders.Length == 1)
         {
             Movdirection = 0f;
             isMoving = false;
@@ -173,5 +184,16 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.DrawWireCube(PointCheck.transform.position, new Vector3(sizePointCheck.x, sizePointCheck.y, 1f));
         Gizmos.DrawWireCube(CheckposPlayer.transform.position, new Vector3(sizeCheckPosPlayer.x, sizeCheckPosPlayer.y, 1f));
+        Gizmos.DrawWireCube(CheckdamPlayer.transform.position, new Vector3(sizeCheckdamPlayer.x, sizeCheckdamPlayer.y, 1f));
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        PlayerController.Instance.Health -= 1;
+    //        //PlayerController.Instance.TakeDamage();
+    //    }
+    //}
+
 }

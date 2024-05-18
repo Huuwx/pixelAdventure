@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 sizeGroundCheck;
     public static int Pointn = 0;
 
+    
     //public float JumpForce = 0.5f;
     //public static int countJump = 0;
     //public Rigidbody2D Rigidbody;
@@ -54,6 +55,32 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMovement.Instance.Movement(horizontal);
+    }
+
+    public float health;
+    public float Health
+    {
+        set
+        {
+            animator.SetTrigger("TakeDamage");
+            Debug.Log(value);
+            health = value;
+            if (health <= 0)
+            {
+                Defeated();
+            }
+        }
+        get { return health; }
+    }
+
+    public void Defeated()
+    {
+        animator.SetTrigger("Dead");
+    }
+
+    public void TakeDamage()
+    {
+        animator.SetTrigger("TakeDamage");
     }
 
     private bool CheckGround()

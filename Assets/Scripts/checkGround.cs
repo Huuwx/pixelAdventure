@@ -28,7 +28,7 @@ public class checkGround : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.SetActive(false);
+            EnemyController.Instance.Health -= 1;
             PlayerMovement.Instance.SetTriggerJump();
             PlayerMovement.Instance.JumpA();
         }
