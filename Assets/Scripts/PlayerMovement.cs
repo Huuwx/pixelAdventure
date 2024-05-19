@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 pos = transform.position;
         pos.x = pos.x + moveSpeed * horizontal * Time.deltaTime;
         transform.position = pos;
+
     }
 
     public void CheckFall()

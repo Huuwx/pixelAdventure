@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get => instance; }
 
     private Animator animator;
+    public Rigidbody rb;
     private bool grounded;
     private bool Fall = false;
     public static bool NinjaFrog;
@@ -24,7 +26,12 @@ public class PlayerController : MonoBehaviour
     public Vector2 sizeGroundCheck;
     public static int Pointn = 0;
 
-    
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+
+    public bool KnockFromRight;
+
     //public float JumpForce = 0.5f;
     //public static int countJump = 0;
     //public Rigidbody2D Rigidbody;
@@ -36,8 +43,8 @@ public class PlayerController : MonoBehaviour
         instance = this;
         Pointn = 0;
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
         //CheckCharacter();
-        //Rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -54,7 +61,23 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMovement.Instance.Movement(horizontal);
+        if(KBCounter <= 0)
+        {
+            PlayerMovement.Instance.Movement(horizontal);
+        }
+        else
+        {
+            if(KnockFromRight == true)
+            {
+                PlayerMovement.Instance.Rigidbody.velocity = new Vector2(-KBForce, KBForce);
+            }
+            else
+            {
+                PlayerMovement.Instance.Rigidbody.velocity = new Vector2(KBForce, KBForce);
+            }
+
+            KBCounter -= Time.deltaTime;
+        }
     }
 
     public float health;
@@ -68,6 +91,10 @@ public class PlayerController : MonoBehaviour
             if (health <= 0)
             {
                 Defeated();
+                //if(grounded == true)
+                //{
+                //    Time.timeScale = 0;
+                //}
             }
         }
         get { return health; }
@@ -76,6 +103,11 @@ public class PlayerController : MonoBehaviour
     public void Defeated()
     {
         animator.SetTrigger("Dead");
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
     }
 
     public void TakeDamage()
