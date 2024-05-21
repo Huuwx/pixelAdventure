@@ -10,10 +10,6 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyController : MonoBehaviour
 {
 
-    private static EnemyController instance;
-
-    public static EnemyController Instance { get => instance; }
-
     public float Movdirection = 0f;
     public float MoveSpeed = 1.5f;
     private bool isMoving = false;
@@ -43,10 +39,8 @@ public class EnemyController : MonoBehaviour
         get { return health; }
     }
 
-    void Start()
+    protected virtual void Start()
     {
-        if (EnemyController.instance != null) { Debug.LogError("Only 1 SoundController allow to exist!"); }
-        EnemyController.instance = this;
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -62,11 +56,16 @@ public class EnemyController : MonoBehaviour
         Debug.Log("ga chet");
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         CheckPlayer();
         Movement();
         FlipEnemies();
+    }
+
+    public void minusHP()
+    {
+        health -= 1;
     }
 
     public void Movement()

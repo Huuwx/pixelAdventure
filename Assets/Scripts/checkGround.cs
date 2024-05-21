@@ -6,6 +6,7 @@ public class checkGround : MonoBehaviour
 {
 
     public AudioClip eatFruit;
+    public EnemyController enemyController;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +27,6 @@ public class checkGround : MonoBehaviour
             PlayerMovement.countJump = 0;
             PlayerMovement.Instance.setFloatA(0);
         }
-        else if (collision.gameObject.tag == "Enemy")
-        {
-            EnemyController.Instance.Health -= 1;
-            PlayerMovement.Instance.SetTriggerJump();
-            PlayerMovement.Instance.JumpA();
-        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -42,7 +37,12 @@ public class checkGround : MonoBehaviour
             collision.gameObject.SetActive(false);
             SoundController.Instance.PlaySound(eatFruit);
         }
-        
+        else if (collision.gameObject.tag == "Enemy" )
+        {
+            enemyController.Health -= 1;
+            PlayerMovement.Instance.SetTriggerJump();
+            PlayerMovement.Instance.JumpA();
+        }
     }
 
 }

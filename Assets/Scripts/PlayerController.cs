@@ -20,9 +20,11 @@ public class PlayerController : MonoBehaviour
     public static bool VirtualGuy;
     public static bool MaskDude;
     public Text Point;
+    public Text PointOver;
 
     float horizontal;
 
+    public GameObject PointinGame;
     public GameObject PointGroundCheck;
     public Vector2 sizeGroundCheck;
     public static int Pointn = 0;
@@ -109,6 +111,8 @@ public class PlayerController : MonoBehaviour
     public void Pause()
     {
         Time.timeScale = 0;
+        PointOver.text = Pointn.ToString();
+        PointinGame.SetActive(false);
         panelGameOver.SetActive(true);
     }
 
