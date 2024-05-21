@@ -7,9 +7,16 @@ using UnityEngine.UI;
 
 public class HomeController : MonoBehaviour
 {
+    private static HomeController instance;
+
+    public static HomeController Instance { get => instance; }
+
     string SceneName;
     public GameObject panel;
+    public GameObject panelGameOver;
     public Button SettingBtn;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +24,12 @@ public class HomeController : MonoBehaviour
         //panel.SetActive(false);
     }
 
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        panelGameOver.SetActive(true);
+    }
 
     public void StartBtn()
     {
@@ -52,7 +65,6 @@ public class HomeController : MonoBehaviour
         SceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(SceneName);
         Time.timeScale = 1;
-
     }
 
     public void BackHomeScene()

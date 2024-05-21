@@ -23,8 +23,6 @@ public class EnemyController : MonoBehaviour
     public Vector2 sizePointCheck;
     public GameObject CheckposPlayer;
     public Vector2 sizeCheckPosPlayer;
-    public GameObject CheckdamPlayer;
-    public Vector2 sizeCheckdamPlayer;
 
     Rigidbody2D rigid;
     private Animator animator;
@@ -67,7 +65,6 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         CheckPlayer();
-        damagePlayer();
         Movement();
         FlipEnemies();
     }
@@ -86,27 +83,6 @@ public class EnemyController : MonoBehaviour
         else if (Movdirection > 0.01f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-        }
-    }
-
-    private void damagePlayer()
-    {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(CheckdamPlayer.transform.position, sizeCheckdamPlayer, 0);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.tag == "Player")
-            {
-                PlayerController.Instance.KBCounter = PlayerController.Instance.KBTotalTime;
-                if(collider.transform.position.x < transform.position.x)
-                {
-                    PlayerController.Instance.KnockFromRight = true;
-                }
-                else
-                {
-                    PlayerController.Instance.KnockFromRight = false;
-                }
-                PlayerController.Instance.Health -= 1;
-            }
         }
     }
 
@@ -171,12 +147,12 @@ public class EnemyController : MonoBehaviour
                 }
                 isMoving = true;
                 animator.SetBool("IsMoving", isMoving);
-                if (Mathf.Abs(transform.position.x - target.position.x) <= 1.8f)
-                {
-                    Movdirection = 0f;
-                    isMoving = false;
-                    animator.SetBool("IsMoving", isMoving);
-                }
+                //if (Mathf.Abs(transform.position.x - target.position.x) <= 1.8f)
+                //{
+                //    Movdirection = 0f;
+                //    isMoving = false;
+                //    animator.SetBool("IsMoving", isMoving);
+                //}
             }
         }
         if (colliders.Length == 1)
@@ -192,16 +168,22 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.DrawWireCube(PointCheck.transform.position, new Vector3(sizePointCheck.x, sizePointCheck.y, 1f));
         Gizmos.DrawWireCube(CheckposPlayer.transform.position, new Vector3(sizeCheckPosPlayer.x, sizeCheckPosPlayer.y, 1f));
-        Gizmos.DrawWireCube(CheckdamPlayer.transform.position, new Vector3(sizeCheckdamPlayer.x, sizeCheckdamPlayer.y, 1f));
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        PlayerController.Instance.Health -= 1;
-    //        //PlayerController.Instance.TakeDamage();
-    //    }
-    //}
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerController.Instance.KBCounter = PlayerController.Instance.KBTotalTime;
+            if (collision.transform.position.x < transform.position.x)
+            {
+                PlayerController.Instance.KnockFromRight = true;
+            }
+            else
+            {
+                PlayerController.Instance.KnockFromRight = false;
+            }
+            PlayerController.Instance.Health -= 1;
+        }
+    }
 }

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance { get => instance; }
 
+    public GameObject panelGameOver;
     private Animator animator;
     public Rigidbody rb;
     private bool grounded;
@@ -108,6 +109,7 @@ public class PlayerController : MonoBehaviour
     public void Pause()
     {
         Time.timeScale = 0;
+        panelGameOver.SetActive(true);
     }
 
     public void TakeDamage()

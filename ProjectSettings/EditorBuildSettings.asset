@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelMenu.unity
     guid: ef23f164384f5504dab2e220359b560f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChangeCharacterScene.unity
     guid: 5092e13f627c6ec45a484964807b2b09
   - enabled: 1
