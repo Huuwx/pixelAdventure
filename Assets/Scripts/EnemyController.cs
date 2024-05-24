@@ -12,16 +12,17 @@ public class EnemyController : MonoBehaviour
 
     public float Movdirection = 0f;
     public float MoveSpeed = 1.5f;
-    private bool isMoving = false;
+    protected bool isMoving = false;
 
     public Transform target;
     public GameObject PointCheck;
     public Vector2 sizePointCheck;
     public GameObject CheckposPlayer;
     public Vector2 sizeCheckPosPlayer;
+    
 
-    Rigidbody2D rigid;
-    private Animator animator;
+    protected Rigidbody2D rigid;
+    protected Animator animator;
 
     public float health;
     public float Health
@@ -59,8 +60,6 @@ public class EnemyController : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         CheckPlayer();
-        Movement();
-        FlipEnemies();
     }
 
     public void minusHP()
@@ -68,7 +67,7 @@ public class EnemyController : MonoBehaviour
         health -= 1;
     }
 
-    public void Movement()
+    public virtual void Movement()
     {
         rigid.velocity = new Vector2(Movdirection * MoveSpeed, rigid.velocity.y);
     }
@@ -126,7 +125,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void CheckPlayer()
+    public virtual void CheckPlayer()
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(CheckposPlayer.transform.position, sizeCheckPosPlayer, 0);
         foreach (Collider2D collider in colliders)
@@ -146,12 +145,12 @@ public class EnemyController : MonoBehaviour
                 }
                 isMoving = true;
                 animator.SetBool("IsMoving", isMoving);
-                //if (Mathf.Abs(transform.position.x - target.position.x) <= 1.8f)
-                //{
-                //    Movdirection = 0f;
-                //    isMoving = false;
-                //    animator.SetBool("IsMoving", isMoving);
-                //}
+                if (Mathf.Abs(transform.position.x - target.position.x) <= 1.8f)
+                {
+                    Movdirection = 0f;
+                    isMoving = false;
+                    animator.SetBool("IsMoving", isMoving);
+                }
             }
         }
         if (colliders.Length == 1)
@@ -169,7 +168,7 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireCube(CheckposPlayer.transform.position, new Vector3(sizeCheckPosPlayer.x, sizeCheckPosPlayer.y, 1f));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {

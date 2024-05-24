@@ -13,5 +13,7 @@ public class stupidChickenController : EnemyController
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+        Movement();
+        FlipEnemies();
     }
 }

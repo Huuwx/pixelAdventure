@@ -37,9 +37,24 @@ public class checkGround : MonoBehaviour
             collision.gameObject.SetActive(false);
             SoundController.Instance.PlaySound(eatFruit);
         }
-        else if (collision.gameObject.tag == "Enemy" )
+        else if (collision.gameObject.tag == "stupidChicken")
         {
-            enemyController.Health -= 1;
+            stupidChickenController stupidChicken = collision.gameObject.GetComponent<stupidChickenController>();
+            stupidChicken.Health -= 1;
+            PlayerMovement.Instance.SetTriggerJump();
+            PlayerMovement.Instance.JumpA();
+        }
+        else if (collision.gameObject.tag == "DuckDuck")
+        {
+            DuckController duck = collision.gameObject.GetComponent<DuckController>();
+            duck.Health -= 1;
+            PlayerMovement.Instance.SetTriggerJump();
+            PlayerMovement.Instance.JumpA();
+        }
+        else if (collision.gameObject.tag == "FatBird")
+        {
+            FatBirdController fb = collision.gameObject.GetComponent<FatBirdController>();
+            fb.Health -= 1;
             PlayerMovement.Instance.SetTriggerJump();
             PlayerMovement.Instance.JumpA();
         }
