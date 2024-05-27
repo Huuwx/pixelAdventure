@@ -10,9 +10,8 @@ public class DuckController : EnemyController
         base.Start();
     }
 
-    protected override void FixedUpdate()
+    protected void FixedUpdate()
     {
-        base.FixedUpdate();
         Movement();
         FlipEnemies();
     }

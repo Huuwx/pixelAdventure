@@ -14,16 +14,16 @@ public class FatBirdController : EnemyController
         HomePos = transform.position;
     }
 
-    protected override void FixedUpdate()
+    protected void FixedUpdate()
     {
-        base.FixedUpdate();
+        CheckPlayerFB();
         if (isNotHome)
         {
             BackHomePos();
         }
     }
 
-    public override void CheckPlayer()
+    public void CheckPlayerFB()
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(CheckposPlayer.transform.position, sizeCheckPosPlayer, 0);
         foreach (Collider2D collider in colliders)
@@ -35,10 +35,10 @@ public class FatBirdController : EnemyController
                 animator.SetBool("IsMoving", isMoving);
             }
         }
-        if (colliders.Length == 1)
-        {
+        //if (colliders.Length == 1)
+        //{
             
-        }
+        //}
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)

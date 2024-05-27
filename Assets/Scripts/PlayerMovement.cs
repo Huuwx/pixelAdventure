@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 3f;
     public float JumpForce = 7f;
-    public static int countJump = 0;
+    public int countJump = 0;
 
     private Animator animator;
     public Rigidbody2D Rigidbody;
@@ -42,20 +43,22 @@ public class PlayerMovement : MonoBehaviour
         Vector2 pos = transform.position;
         pos.x = pos.x + moveSpeed * horizontal * Time.deltaTime;
         transform.position = pos;
-
     }
 
     public void CheckFall()
     {
-        if (Rigidbody.velocity.y < 0)
+        if(PlayerController.Instance.Wall == false)
         {
-            Fall = true;
-            animator.SetBool("Fall", Fall);
-        }
-        else
-        {
-            Fall = false;
-            animator.SetBool("Fall", Fall);
+            if (Rigidbody.velocity.y < 0)
+            {
+                Fall = true;
+                animator.SetBool("Fall", Fall);
+            }
+            else
+            {
+                Fall = false;
+                animator.SetBool("Fall", Fall);
+            }
         }
     }
 
@@ -68,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && countJump < 2)
         {
+            PlayerController.Instance.setOutWallJump();
             JumpA();
             if (countJump == 1)
             {

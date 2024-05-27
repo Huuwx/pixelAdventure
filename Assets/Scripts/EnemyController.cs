@@ -56,12 +56,6 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
         Debug.Log("ga chet");
     }
-
-    protected virtual void FixedUpdate()
-    {
-        CheckPlayer();
-    }
-
     public void minusHP()
     {
         health -= 1;
@@ -132,29 +126,27 @@ public class EnemyController : MonoBehaviour
         {
             if (collider.tag == "Player")
             {
-                Vector3 distance;
                 if (target.position.x < transform.position.x)
                 {
                     Movdirection = -1f;
-                    distance = new Vector3(-2f, 0, 0);
                 }
                 else if (target.position.x > transform.position.x)
                 {
                     Movdirection = 1f;
-                    distance = new Vector3(2f, 0, 0);
                 }
                 isMoving = true;
                 animator.SetBool("IsMoving", isMoving);
-                if (Mathf.Abs(transform.position.x - target.position.x) <= 1.8f)
-                {
-                    Movdirection = 0f;
-                    isMoving = false;
-                    animator.SetBool("IsMoving", isMoving);
-                }
+                //if (Mathf.Abs(transform.position.x - target.position.x) <= 1.8f)
+                //{
+                //    Movdirection = 0f;
+                //    isMoving = false;
+                //    animator.SetBool("IsMoving", isMoving);
+                //}
             }
         }
-        if (colliders.Length == 1)
+        if (colliders.Length == 2)
         {
+            Debug.Log("dung lai");
             Movdirection = 0f;
             isMoving = false;
             animator.SetBool("IsMoving", isMoving);

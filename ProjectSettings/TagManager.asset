@@ -11,6 +11,7 @@ TagManager:
   - DuckDuck
   - Head
   - FatBird
+  - Wall
   layers:
   - Default
   - TransparentFX

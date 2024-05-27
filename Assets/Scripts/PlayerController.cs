@@ -12,10 +12,11 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get => instance; }
 
     public GameObject panelGameOver;
-    private Animator animator;
-    public Rigidbody rb;
+    public Animator animator;
+    public Rigidbody2D rb;
     private bool grounded;
     private bool Fall = false;
+    public bool Wall = false;
     public static bool NinjaFrog;
     public static bool VirtualGuy;
     public static bool MaskDude;
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
         instance = this;
         Pointn = 0;
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         //CheckCharacter();
     }
 
@@ -60,17 +61,18 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("grounded", grounded);
         Point.text = Pointn.ToString();
         PlayerMovement.Instance.CheckFall();
+        checkMov();
     }
 
     private void FixedUpdate()
     {
-        if(KBCounter <= 0)
+        if (KBCounter <= 0)
         {
             PlayerMovement.Instance.Movement(horizontal);
         }
         else
         {
-            if(KnockFromRight == true)
+            if (KnockFromRight == true)
             {
                 PlayerMovement.Instance.Rigidbody.velocity = new Vector2(-KBForce, KBForce);
             }
@@ -108,6 +110,11 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Dead");
     }
 
+    public void SetBoolWallJump()
+    {
+
+    }
+
     public void Pause()
     {
         Time.timeScale = 0;
@@ -119,6 +126,14 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         animator.SetTrigger("TakeDamage");
+    }
+
+    public void checkMov()
+    {
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        {
+            setOutWallJump();
+        }
     }
 
     private bool CheckGround()
@@ -155,6 +170,31 @@ public class PlayerController : MonoBehaviour
         {
             CharacterSelection.Instance.SetActiveCharacter(false, false, true);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall" && grounded == false)
+        {
+            Debug.Log("tuong");
+            rb.drag = 10f;
+            Wall = true;
+            animator.SetBool("Wall", Wall);
+            Fall = false;
+            animator.SetBool("Fall", Fall);
+            PlayerMovement.Instance.countJump = 0;
+        }
+        if (collision.gameObject.tag == "Ground")
+        {
+
+        }
+    }
+
+    public void setOutWallJump()
+    {
+        rb.drag = 0f;
+        Wall = false;
+        animator.SetBool("Wall", Wall);
     }
 
     //public void CheckFall()

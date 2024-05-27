@@ -10,9 +10,9 @@ public class stupidChickenController : EnemyController
         base.Start();
     }
 
-    protected override void FixedUpdate()
+    protected void FixedUpdate()
     {
-        base.FixedUpdate();
+        CheckPlayer();
         Movement();
         FlipEnemies();
     }
