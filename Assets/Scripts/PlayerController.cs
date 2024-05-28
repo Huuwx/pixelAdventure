@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool grounded;
     private bool Fall = false;
     public bool Wall = false;
+    bool bamtuong;
     public static bool NinjaFrog;
     public static bool VirtualGuy;
     public static bool MaskDude;
@@ -179,22 +180,21 @@ public class PlayerController : MonoBehaviour
             Debug.Log("tuong");
             rb.drag = 10f;
             Wall = true;
-            animator.SetBool("Wall", Wall);
+            animator.SetTrigger("WallJump");
             Fall = false;
             animator.SetBool("Fall", Fall);
             PlayerMovement.Instance.countJump = 0;
+
         }
         if (collision.gameObject.tag == "Ground")
         {
 
         }
     }
-
     public void setOutWallJump()
     {
         rb.drag = 0f;
         Wall = false;
-        animator.SetBool("Wall", Wall);
     }
 
     //public void CheckFall()

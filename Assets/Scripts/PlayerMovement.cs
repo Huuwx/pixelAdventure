@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 3f;
     public float JumpForce = 7f;
+    public float WallJumpForce = 0.5f;
     public int countJump = 0;
 
     private Animator animator;
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckFall()
     {
-        if(PlayerController.Instance.Wall == false)
+        if (PlayerController.Instance.Wall == false)
         {
             if (Rigidbody.velocity.y < 0)
             {
@@ -71,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && countJump < 2)
         {
-            PlayerController.Instance.setOutWallJump();
             JumpA();
             if (countJump == 1)
             {
@@ -93,10 +93,12 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal > 0.01f)
         {
             transform.localScale = Vector3.one;
+            WallJumpForce = -0.5f;
         }
         else if (horizontal < -0.01f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            WallJumpForce = 0.5f;
         }
 
         animator.SetBool("IsMoving", horizontal != 0);
@@ -106,6 +108,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpA()
     {
-        Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpForce);
+        if (PlayerController.Instance.Wall == false)
+            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpForce);
+        else
+        {
+            Debug.Log("nhay tuong");
+            Rigidbody.velocity = new Vector2(WallJumpForce, JumpForce);
+            PlayerController.Instance.setOutWallJump();
+        }
     }
 }
