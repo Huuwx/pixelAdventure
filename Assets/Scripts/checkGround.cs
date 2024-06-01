@@ -27,6 +27,8 @@ public class checkGround : MonoBehaviour
             PlayerMovement.Instance.countJump = 0;
             PlayerMovement.Instance.setFloatA(0);
             PlayerController.Instance.setOutWallJump();
+            PlayerController.Instance.setFall(false);
+            PlayerController.Instance.animator.SetBool("Fall", PlayerController.Instance.getFall());
         }
     }
 

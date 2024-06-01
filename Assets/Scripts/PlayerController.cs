@@ -15,7 +15,23 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
     private bool grounded;
+    public void setGrounded(bool Grounded)
+    {
+        grounded = Grounded;
+    }
+    public bool getGrounded()
+    {
+        return grounded;
+    }
     private bool Fall = false;
+    public void setFall(bool fall)
+    {
+        Fall = fall;
+    }
+    public bool getFall()
+    {
+        return Fall;
+    }
     public bool Wall = false;
     bool bamtuong;
     public static bool NinjaFrog;
@@ -190,7 +206,21 @@ public class PlayerController : MonoBehaviour
         {
 
         }
+        if (collision.gameObject.tag == "Trap")
+        {
+            KBCounter = KBTotalTime;
+            if (collision.transform.position.x > transform.position.x)
+            {
+                KnockFromRight = true;
+            }
+            else
+            {
+                KnockFromRight = false;
+            }
+            Health -= 1;
+        }
     }
+
     public void setOutWallJump()
     {
         rb.drag = 0f;

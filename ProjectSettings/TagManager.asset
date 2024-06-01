@@ -12,6 +12,7 @@ TagManager:
   - Head
   - FatBird
   - Wall
+  - Trap
   layers:
   - Default
   - TransparentFX
