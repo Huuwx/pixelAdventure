@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class TrapsController : MonoBehaviour
 {
+    private static TrapsController instance;
+
+    public static TrapsController Instance { get => instance; }
+
     public float speed;
     public float direct;
     public bool MoveX;
     public bool MoveY;
+    private Animator animator;
 
     public GameObject PointGroundcheck;
     public Vector2 sizePointGroundcheck;
@@ -15,14 +20,14 @@ public class TrapsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         SawMove();
-        if(MoveX || MoveY)
+        if (MoveX || MoveY)
         {
             ChangeMove();
         }
@@ -48,7 +53,7 @@ public class TrapsController : MonoBehaviour
         Collider2D[] collidersR = Physics2D.OverlapBoxAll(PointGroundcheck.transform.position, sizePointGroundcheck, 0);
         foreach (var colliderR in collidersR)
         {
-            if(colliderR.tag == "Ground")
+            if (colliderR.tag == "Ground")
             {
                 Debug.Log("cham dat");
                 if (MoveX)
@@ -56,7 +61,7 @@ public class TrapsController : MonoBehaviour
                     MoveX = false;
                     Invoke(nameof(ChangeX), 1.5f);
                 }
-                else if(MoveY)
+                else if (MoveY)
                 {
                     MoveY = false;
                     Invoke(nameof(ChangeY), 1.5f);
@@ -81,4 +86,6 @@ public class TrapsController : MonoBehaviour
     {
         Gizmos.DrawWireCube(PointGroundcheck.transform.position, new Vector3(sizePointGroundcheck.x, sizePointGroundcheck.y, 1f));
     }
+
+    
 }

@@ -6,7 +6,6 @@ public class checkGround : MonoBehaviour
 {
 
     public AudioClip eatFruit;
-    public EnemyController enemyController;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +59,13 @@ public class checkGround : MonoBehaviour
             fb.Health -= 1;
             PlayerMovement.Instance.SetTriggerJump();
             PlayerMovement.Instance.JumpA();
+        }
+        else if(collision.gameObject.tag == "Trampoline")
+        {
+            Debug.Log("nhay");
+            TrampolineController.Instance.SetTriggerAnimation();
+            PlayerMovement.Instance.SetTriggerJump();
+            PlayerMovement.Instance.JumpTrampoline();
         }
     }
 

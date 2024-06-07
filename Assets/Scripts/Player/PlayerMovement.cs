@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 3f;
     public float JumpForce = 7f;
+    public float JumpTrampolineForce = 10f;
     public float WallJumpForce = 0.5f;
     public int countJump = 0;
 
@@ -23,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerMovement.instance != null) { Debug.LogError("Only 1 SoundController allow to exist!"); }
-        PlayerMovement.instance = this;
+        if (instance != null) { Debug.LogError("Only 1 SoundController allow to exist!"); }
+        instance = this;
         Rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -116,5 +117,11 @@ public class PlayerMovement : MonoBehaviour
             Rigidbody.velocity = new Vector2(WallJumpForce, JumpForce);
             PlayerController.Instance.setOutWallJump();
         }
+    }
+
+    public void JumpTrampoline()
+    {
+        countJump = 2;
+        Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, JumpTrampolineForce);
     }
 }
