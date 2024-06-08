@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
         Pointn = 0;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        animator.SetTrigger("Appearing");
+        rb.gravityScale = 0f;
         //CheckCharacter();
     }
 
@@ -127,9 +129,9 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Dead");
     }
 
-    public void SetBoolWallJump()
+    public void SetGravityAfterStart()
     {
-
+        rb.gravityScale = 1.2f;
     }
 
     public void Pause()
