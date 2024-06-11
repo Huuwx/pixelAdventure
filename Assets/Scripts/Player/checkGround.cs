@@ -48,6 +48,7 @@ public class checkGround : MonoBehaviour
         }
         else if (collision.gameObject.tag == "DuckDuck")
         {
+            Debug.Log("cham vit");
             DuckController duck = collision.gameObject.GetComponent<DuckController>();
             duck.Health -= 1;
             PlayerMovement.Instance.SetTriggerJump();

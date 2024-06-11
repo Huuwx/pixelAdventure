@@ -55,7 +55,6 @@ public class TrapsController : MonoBehaviour
         {
             if (colliderR.tag == "Ground")
             {
-                Debug.Log("cham dat");
                 if (MoveX)
                 {
                     MoveX = false;
