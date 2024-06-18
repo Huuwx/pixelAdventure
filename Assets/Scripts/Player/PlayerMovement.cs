@@ -1,14 +1,22 @@
+using EasyParallax;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
     private static PlayerMovement instance;
+    public MovementSpeedType[] movementSpeedType;
 
     public static PlayerMovement Instance { get => instance; }
 
+    private bool IsMoving = false;
+    public bool getIsMoving()
+    {
+        return IsMoving;
+    }
     public float moveSpeed = 3f;
     public float JumpForce = 7f;
     public float JumpTrampolineForce = 10f;
@@ -45,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 pos = transform.position;
         pos.x = pos.x + moveSpeed * horizontal * Time.deltaTime;
         transform.position = pos;
+        //Rigidbody.velocity = new Vector2(horizontal * moveSpeed, Rigidbody.velocity.y);
     }
 
     public void CheckFall()
@@ -91,18 +100,46 @@ public class PlayerMovement : MonoBehaviour
     public void AMoving()
     {
         //Flip Player when moving left-right
-        if (horizontal > 0.01f)
+        if (horizontal != 0)
         {
-            transform.localScale = Vector3.one;
-            WallJumpForce = -0.5f;
+            IsMoving = true;
+            if (horizontal > 0.01f)
+            {
+                movementSpeedType[0].speed = 0.1f;
+                movementSpeedType[1].speed = 0.2f;
+                movementSpeedType[2].speed = 0.3f;
+                movementSpeedType[3].speed = 0.4f;
+                movementSpeedType[4].speed = 0.5f;
+                movementSpeedType[5].speed = 0.6f;
+                movementSpeedType[6].speed = 0.7f;
+                movementSpeedType[7].speed = 0.8f;
+                movementSpeedType[8].speed = 0.9f;
+                movementSpeedType[9].speed = 1f;
+                transform.localScale = Vector3.one;
+                WallJumpForce = -0.5f;
+            }
+            else if (horizontal < -0.01f)
+            {
+                movementSpeedType[0].speed = -0.1f;
+                movementSpeedType[1].speed = -0.2f;
+                movementSpeedType[2].speed = -0.3f;
+                movementSpeedType[3].speed = -0.4f;
+                movementSpeedType[4].speed = -0.5f;
+                movementSpeedType[5].speed = -0.6f;
+                movementSpeedType[6].speed = -0.7f;
+                movementSpeedType[7].speed = -0.8f;
+                movementSpeedType[8].speed = -0.9f;
+                movementSpeedType[9].speed = -1f;
+                transform.localScale = new Vector3(-1, 1, 1);
+                WallJumpForce = 0.5f;
+            }
         }
-        else if (horizontal < -0.01f)
+        else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-            WallJumpForce = 0.5f;
+            IsMoving = false;
         }
 
-        animator.SetBool("IsMoving", horizontal != 0);
+        animator.SetBool("IsMoving", IsMoving);
     }
 
 
