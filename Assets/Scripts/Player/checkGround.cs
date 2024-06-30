@@ -29,6 +29,10 @@ public class checkGround : MonoBehaviour
             PlayerController.Instance.setFall(false);
             PlayerController.Instance.animator.SetBool("Fall", PlayerController.Instance.getFall());
         }
+        if (collision.gameObject.tag == "Dead")
+        {
+            PlayerController.Instance.Health -= 10000;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

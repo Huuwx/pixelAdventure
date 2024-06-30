@@ -15,6 +15,12 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
     private bool grounded;
+    private bool canControl = false;
+
+    public void setCanControl()
+    {
+        canControl = true;
+    }
     public void setGrounded(bool Grounded)
     {
         grounded = Grounded;
@@ -73,6 +79,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!canControl) return;
+
         horizontal = PlayerMovement.Instance.GetMovInput();
         PlayerMovement.Instance.AMoving();
         PlayerMovement.Instance.Jump();
