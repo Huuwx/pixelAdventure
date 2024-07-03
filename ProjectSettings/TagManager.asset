@@ -16,6 +16,7 @@ TagManager:
   - Trampoline
   - Dead
   - EndPoint
+  - Door
   layers:
   - Default
   - TransparentFX

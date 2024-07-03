@@ -13,7 +13,7 @@ public class HomeController : MonoBehaviour
 
     string SceneName;
     public GameObject panel;
-    public GameObject panelGameOver;
+    public GameObject panelDoneGame;
     public Button SettingBtn;
 
 
@@ -28,7 +28,7 @@ public class HomeController : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
-        panelGameOver.SetActive(true);
+        panelDoneGame.SetActive(true);
     }
 
     public void StartBtn()

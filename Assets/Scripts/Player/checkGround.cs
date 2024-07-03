@@ -4,21 +4,6 @@ using UnityEngine;
 
 public class checkGround : MonoBehaviour
 {
-
-    public AudioClip eatFruit;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -37,13 +22,7 @@ public class checkGround : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "MelonFruit")
-        {
-            PlayerController.Pointn += 1;
-            collision.gameObject.SetActive(false);
-            SoundController.Instance.PlaySound(eatFruit);
-        }
-        else if (collision.gameObject.tag == "stupidChicken")
+        if (collision.gameObject.tag == "stupidChicken")
         {
             stupidChickenController stupidChicken = collision.gameObject.GetComponent<stupidChickenController>();
             stupidChicken.Health -= 1;

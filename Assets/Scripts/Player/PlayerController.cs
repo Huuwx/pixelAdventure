@@ -11,11 +11,33 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance { get => instance; }
 
-    public GameObject panelGameOver;
+    public GameObject panelDoneGame;
     public Animator animator;
     public Rigidbody2D rb;
     private bool grounded;
     private bool canControl = false;
+
+    public bool Wall = false;
+    bool bamtuong;
+    public static bool NinjaFrog;
+    public static bool VirtualGuy;
+    public static bool MaskDude;
+    public Text Point;
+    public Text LastPoint;
+    public Text LastTxt;
+
+    float horizontal;
+
+    public GameObject PointinGame;
+    public GameObject PointGroundCheck;
+    public Vector2 sizeGroundCheck;
+    public static int Pointn = 0;
+
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+
+    public bool KnockFromRight;
 
     public void setCanControl()
     {
@@ -38,26 +60,6 @@ public class PlayerController : MonoBehaviour
     {
         return Fall;
     }
-    public bool Wall = false;
-    bool bamtuong;
-    public static bool NinjaFrog;
-    public static bool VirtualGuy;
-    public static bool MaskDude;
-    public Text Point;
-    public Text PointOver;
-
-    float horizontal;
-
-    public GameObject PointinGame;
-    public GameObject PointGroundCheck;
-    public Vector2 sizeGroundCheck;
-    public static int Pointn = 0;
-
-    public float KBForce;
-    public float KBCounter;
-    public float KBTotalTime;
-
-    public bool KnockFromRight;
 
     //public float JumpForce = 0.5f;
     //public static int countJump = 0;
@@ -144,10 +146,23 @@ public class PlayerController : MonoBehaviour
 
     public void Pause()
     {
+        LastTxt.text = "Game Over";
+        LastTxt.fontSize = 102;
         Time.timeScale = 0;
-        PointOver.text = Pointn.ToString();
+        LastPoint.text = Pointn.ToString();
         PointinGame.SetActive(false);
-        panelGameOver.SetActive(true);
+        panelDoneGame.SetActive(true);
+    }
+
+    public void Win()
+    {
+        LastTxt.text = "Congratulations !";
+        LastTxt.fontSize = 70;
+        Time.timeScale = 0;
+        LastPoint.text = Pointn.ToString();
+        PointinGame.SetActive(false);
+        panelDoneGame.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void TakeDamage()
@@ -231,6 +246,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Door")
+        {
+            horizontal = 0;
+            canControl = false;
+            animator.SetTrigger("Desappearing");
+        }
+    }
+
+    public void NextMap()
+    {
+        //HomeController.Instance.BackHomeScene();
+    }
     public void setOutWallJump()
     {
         rb.drag = 0f;
