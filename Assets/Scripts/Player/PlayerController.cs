@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance { get => instance; }
 
+    public ParticleSystem Dust;
     public GameObject panelDoneGame;
     public Animator animator;
     public Rigidbody2D rb;
@@ -264,6 +265,11 @@ public class PlayerController : MonoBehaviour
     {
         rb.drag = 0f;
         Wall = false;
+    }
+
+    void CreateDust()
+    {
+        Dust.Play();
     }
 
     //public void CheckFall()
