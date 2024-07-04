@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 763484203
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1847833588, guid: 0c399c22216e8e4459c2789bad9fe0fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -171,9 +171,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0c595fe12d6c04e924fef2946a5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 6
-  Rigidbody: {fileID: 3047198136335649972}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheckRadius: 1
+  RunDust: {fileID: 0}
+  FallDust: {fileID: 0}
+  panelDoneGame: {fileID: 0}
+  animator: {fileID: 0}
+  rb: {fileID: 0}
+  Wall: 0
+  Point: {fileID: 0}
+  LastPoint: {fileID: 0}
+  LastTxt: {fileID: 0}
+  PointinGame: {fileID: 0}
+  PointGroundCheck: {fileID: 0}
+  sizeGroundCheck: {x: 0, y: 0}
+  KBForce: 0
+  KBCounter: 0
+  KBTotalTime: 0
+  KnockFromRight: 0
+  health: 0

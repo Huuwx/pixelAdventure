@@ -8,6 +8,7 @@ public class checkGround : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            PlayerController.Instance.CreateFallDust();
             PlayerMovement.Instance.countJump = 0;
             PlayerMovement.Instance.setFloatA(0);
             PlayerController.Instance.setOutWallJump();
