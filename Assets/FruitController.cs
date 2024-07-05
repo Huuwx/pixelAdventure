@@ -6,6 +6,7 @@ public class FruitController : MonoBehaviour
 {
     private Animator animator;
     public AudioClip eatFruit;
+    public int Point = 1;
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class FruitController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            PlayerController.Pointn += 1;
+            PlayerController.Pointn += Point;
             animator.SetTrigger("Collected");
             //SoundController.Instance.PlaySound(eatFruit);
         }

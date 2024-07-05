@@ -17,6 +17,7 @@ TagManager:
   - Dead
   - EndPoint
   - Door
+  - BananaFruit
   layers:
   - Default
   - TransparentFX
