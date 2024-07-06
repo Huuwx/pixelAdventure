@@ -8717,10 +8717,30 @@ PrefabInstance:
       propertyPath: panelDoneGame
       value: 
       objectReference: {fileID: 586240219}
+    - target: {fileID: 3869036751771238495, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
+      propertyPath: m_labelHash
+      value: 1.7193975e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869036751771238495, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
+      propertyPath: m_SpriteHash
+      value: 932039875
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869036751771238495, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
+      propertyPath: m_CategoryHash
+      value: 1.8625731e-11
+      objectReference: {fileID: 0}
     - target: {fileID: 5309455516167928704, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6009623821588052369, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1326100605, guid: b235cc2546f980740ad544aa7e7922ac, type: 3}
+    - target: {fileID: 7762261613252068018, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
+      propertyPath: m_SpriteLibraryAsset
+      value: 
+      objectReference: {fileID: 7108339969198208228, guid: ee0d5d897ed929343afec1162e8dc164, type: 3}
     - target: {fileID: 8906936056112985769, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.8
@@ -8833,7 +8853,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3934722902733224756, guid: 4afae4ef2120df74d958e7bb82574561, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.25
+      value: 13.1
       objectReference: {fileID: 0}
     - target: {fileID: 3934722902733224756, guid: 4afae4ef2120df74d958e7bb82574561, type: 3}
       propertyPath: m_LocalPosition.y
