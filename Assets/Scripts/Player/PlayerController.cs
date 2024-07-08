@@ -1,7 +1,11 @@
+﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +14,10 @@ public class PlayerController : MonoBehaviour
     private static PlayerController instance;
 
     public static PlayerController Instance { get => instance; }
+
+    [SerializeField] private SpriteLibraryAsset[] spriteLibraryAssets;
+    private SpriteLibrary spriteLibrary;
+    private int index;
 
     public ParticleSystem RunDust;
     public ParticleSystem FallDust;
@@ -77,6 +85,14 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator.SetTrigger("Appearing");
         rb.gravityScale = 0f;
+
+        spriteLibrary = GetComponent<SpriteLibrary>();
+
+        if (spriteLibrary == null)
+        {
+            Debug.LogError("SpriteLibrary component không tồn tại trên GameObject.");
+        }
+        ChangeCharacter();
         //CheckCharacter();
     }
 
@@ -279,6 +295,26 @@ public class PlayerController : MonoBehaviour
         FallDust.Play();
     }
 
+    public void NinJaFrogBtn()
+    {
+        ValueNeverDestroy.Instance.indexCharacter = 0;
+        ChangeCharacter();
+    }
+
+    public void MaskDudeBtn()
+    {
+        ValueNeverDestroy.Instance.indexCharacter = 1;
+        ChangeCharacter();
+
+    }
+
+    public void ChangeCharacter()
+    {
+        spriteLibrary.spriteLibraryAsset = spriteLibraryAssets[ValueNeverDestroy.Instance.indexCharacter];
+        // Gọi hàm này để cập nhật ngay lập tức
+        spriteLibrary.RefreshSpriteResolvers();
+    }
+    
     //public void CheckFall()
     //{
     //    if (Rigidbody.velocity.y < 0)

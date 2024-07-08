@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
 
 public class HomeController : MonoBehaviour
@@ -11,9 +12,11 @@ public class HomeController : MonoBehaviour
 
     public static HomeController Instance { get => instance; }
 
+    [SerializeField] private SpriteLibraryAsset[] spriteLibraryAssets;
     string SceneName;
     public GameObject panel;
     public GameObject panelDoneGame;
+    public GameObject panelChangeCharacter;
     public Button SettingBtn;
 
 
@@ -53,9 +56,22 @@ public class HomeController : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    public void ChangeCharacter()
+    {
+        panel.SetActive(false);
+        panelChangeCharacter.SetActive(true);
+    }
+
+    public void ChangeCharacterBack()
+    {
+        panelChangeCharacter.SetActive(false);
+        panel.SetActive(true);
+    }
+
     public void Resume()
     {
         panel.SetActive(false);
+        panelChangeCharacter.SetActive(false);
         SettingBtn.enabled = true;
         Time.timeScale = 1;
     }
@@ -83,26 +99,5 @@ public class HomeController : MonoBehaviour
     {
         SceneName = "ChangeCharacterScene";
         SceneManager.LoadScene(SceneName);
-    }
-
-    public void NinJaFrogBtn()
-    {
-        PlayerController.NinjaFrog = true;
-        PlayerController.VirtualGuy = false;
-        PlayerController.MaskDude = false;
-    }
-
-    public void VirtualGuyBtn()
-    {
-        PlayerController.NinjaFrog = false;
-        PlayerController.VirtualGuy = true;
-        PlayerController.MaskDude = false;
-    }
-
-    public void MaskDudeBtn()
-    {
-        PlayerController.NinjaFrog = false;
-        PlayerController.VirtualGuy = false;
-        PlayerController.MaskDude = true;
     }
 }
