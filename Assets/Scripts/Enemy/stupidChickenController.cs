@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class stupidChickenController : EnemyController
 {
+    public ParticleSystem RunDust;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -15,5 +17,10 @@ public class stupidChickenController : EnemyController
         CheckPlayer();
         Movement();
         FlipEnemies();
+    }
+
+    public void createRunDust()
+    {
+        RunDust.Play();
     }
 }

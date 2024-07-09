@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FatBirdController : EnemyController
 {
+    public ParticleSystem FlyDustLeft;
+    public ParticleSystem FlyDustRight;
+    public ParticleSystem FallDust;
 
     public Vector3 HomePos;
     bool isNotHome;
@@ -41,11 +44,12 @@ public class FatBirdController : EnemyController
         //}
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnCollisionEnter2D (collision);
-        if(collision.collider.tag == "Ground")
+        base.OnTriggerEnter2D(collision);
+        if(collision.gameObject.tag == "Ground")
         {
+            CreateFallDust();
             isMoving = false;
             animator.SetBool("IsMoving", isMoving);
             Invoke(nameof(setIsNotHome), 1.5f);
@@ -68,5 +72,16 @@ public class FatBirdController : EnemyController
         {
             isNotHome = false;
         }
+    }
+
+    public void CreateFlyDust()
+    {
+        FlyDustLeft.Play();
+        FlyDustRight.Play();
+    }
+
+    public void CreateFallDust()
+    {
+        FallDust.Play();
     }
 }

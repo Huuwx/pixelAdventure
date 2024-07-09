@@ -12,9 +12,7 @@ public class DuckController : EnemyController
     public GameObject PointGroundCheck;
     public Vector2 sizePointGroundCheck;
 
-
-
-
+    public ParticleSystem JumpDust;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -45,7 +43,8 @@ public class DuckController : EnemyController
                 //}
                 //Invoke(nameof(resetCountJump), 5f);
                 animator.SetTrigger("JumpAnticipation");
-                if(turnBack == true)
+                CreateJumpDust();
+                if (turnBack == true)
                 {
                     CheckWall();
                 }
@@ -99,5 +98,10 @@ public class DuckController : EnemyController
     {
         base.OnDrawGizmos();
         Gizmos.DrawWireCube(PointGroundCheck.transform.position, new Vector3(sizePointGroundCheck.x, sizePointGroundCheck.y, 1f));
+    }
+
+    public void CreateJumpDust()
+    {
+        JumpDust.Play();
     }
 }
