@@ -274,12 +274,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Movdirection: 0
-  MoveSpeed: 1.5
+  MoveSpeed: 3
   target: {fileID: 0}
   PointCheck: {fileID: 2496219334151715671}
   sizePointCheck: {x: 4.2, y: 0.7}
   CheckposPlayer: {fileID: 3275758473951845251}
-  sizeCheckPosPlayer: {x: 7.5, y: 0.7}
+  sizeCheckPosPlayer: {x: 7.5, y: 1.7}
   health: 1
   RunDust: {fileID: 2983935094590890357}
 --- !u!1 &3275758473951845251
@@ -307,7 +307,7 @@ Transform:
   m_GameObject: {fileID: 3275758473951845251}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

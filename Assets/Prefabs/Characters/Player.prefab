@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0c595fe12d6c04e924fef2946a5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteLibraryAssets: []
   RunDust: {fileID: 117203978666234029}
   FallDust: {fileID: 1586788995807646156}
   panelDoneGame: {fileID: 0}
@@ -328,7 +329,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a27733966e17c3541a35e2fb4e580d19, type: 2}
   - {fileID: 11400000, guid: 9e07fca44465c274f906096ebb0a725e, type: 2}
   - {fileID: 11400000, guid: a11045fa8c6bc7b4d83b6914a48b7ec1, type: 2}
-  moveSpeed: 3
+  moveSpeed: 4
   JumpForce: 7
   JumpTrampolineForce: 14
   WallJumpForce: -0.5

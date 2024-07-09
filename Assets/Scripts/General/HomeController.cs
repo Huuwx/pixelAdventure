@@ -12,7 +12,6 @@ public class HomeController : MonoBehaviour
 
     public static HomeController Instance { get => instance; }
 
-    [SerializeField] private SpriteLibraryAsset[] spriteLibraryAssets;
     string SceneName;
     public GameObject panel;
     public GameObject panelDoneGame;
@@ -56,22 +55,9 @@ public class HomeController : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void ChangeCharacter()
-    {
-        panel.SetActive(false);
-        panelChangeCharacter.SetActive(true);
-    }
-
-    public void ChangeCharacterBack()
-    {
-        panelChangeCharacter.SetActive(false);
-        panel.SetActive(true);
-    }
-
     public void Resume()
     {
         panel.SetActive(false);
-        panelChangeCharacter.SetActive(false);
         SettingBtn.enabled = true;
         Time.timeScale = 1;
     }
@@ -99,5 +85,17 @@ public class HomeController : MonoBehaviour
     {
         SceneName = "ChangeCharacterScene";
         SceneManager.LoadScene(SceneName);
+    }
+
+    public void NinJaFrogBtn()
+    {
+        Debug.Log("0");
+        ValueNeverDestroy.Instance.indexCharacter = 0;
+    }
+
+    public void MaskDudeBtn()
+    {
+        Debug.Log("1");
+        ValueNeverDestroy.Instance.indexCharacter = 1;
     }
 }

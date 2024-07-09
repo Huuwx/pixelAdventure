@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Movdirection: 0
-  MoveSpeed: 4
+  MoveSpeed: 6
   target: {fileID: 0}
   PointCheck: {fileID: 6234656011540211089}
   sizePointCheck: {x: 0, y: 0}

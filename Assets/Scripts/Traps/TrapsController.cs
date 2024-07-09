@@ -53,7 +53,7 @@ public class TrapsController : MonoBehaviour
         Collider2D[] collidersR = Physics2D.OverlapBoxAll(PointGroundcheck.transform.position, sizePointGroundcheck, 0);
         foreach (var colliderR in collidersR)
         {
-            if (colliderR.tag == "Ground")
+            if (colliderR.tag == "Ground" || colliderR.tag == "Wall")
             {
                 if (MoveX)
                 {

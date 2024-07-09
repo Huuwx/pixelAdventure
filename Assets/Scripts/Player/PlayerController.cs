@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private SpriteLibraryAsset[] spriteLibraryAssets;
     private SpriteLibrary spriteLibrary;
-    private int index;
 
     public ParticleSystem RunDust;
     public ParticleSystem FallDust;
@@ -28,7 +27,6 @@ public class PlayerController : MonoBehaviour
     private bool canControl = false;
 
     public bool Wall = false;
-    bool bamtuong;
     public static bool NinjaFrog;
     public static bool VirtualGuy;
     public static bool MaskDude;
@@ -293,19 +291,6 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("khoi");
         FallDust.Play();
-    }
-
-    public void NinJaFrogBtn()
-    {
-        ValueNeverDestroy.Instance.indexCharacter = 0;
-        ChangeCharacter();
-    }
-
-    public void MaskDudeBtn()
-    {
-        ValueNeverDestroy.Instance.indexCharacter = 1;
-        ChangeCharacter();
-
     }
 
     public void ChangeCharacter()
