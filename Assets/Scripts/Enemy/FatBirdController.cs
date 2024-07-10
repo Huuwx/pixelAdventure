@@ -55,7 +55,13 @@ public class FatBirdController : EnemyController
             Invoke(nameof(setIsNotHome), 1.5f);
 
         }
-        Debug.Log("==");
+        else if(collision.gameObject.tag == "Player")
+        {
+            CreateFallDust();
+            isMoving = false;
+            animator.SetBool("IsMoving", isMoving);
+            setIsNotHome();
+        }
     }
 
     private void setIsNotHome()
