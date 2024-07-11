@@ -594,8 +594,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -8.529999}
-  m_SizeDelta: {x: 0, y: 45.06}
+  m_AnchoredPosition: {x: 5.022293, y: -3.507698}
+  m_SizeDelta: {x: 10.0446, y: 85.2385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &604515521
 MonoBehaviour:
@@ -821,7 +821,7 @@ RectTransform:
   m_Father: {fileID: 1987855212}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1402,9 +1402,9 @@ RectTransform:
   m_Father: {fileID: 1825979539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1480985667
 MonoBehaviour:
@@ -1671,7 +1671,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 937414171}
   m_HandleRect: {fileID: 937414170}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1914,8 +1914,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 28}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_SizeDelta: {x: 0, y: 78.2231}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1739521458
 GameObject:
@@ -2106,7 +2106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1825979539
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2126,7 +2126,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 0, y: 182.3102}
+  m_SizeDelta: {x: 0, y: 418.3586}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1825979540
 MonoBehaviour:
@@ -2322,7 +2322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 0}
-  panelGameOver: {fileID: 0}
+  panelDoneGame: {fileID: 0}
+  panelChangeCharacter: {fileID: 0}
   SettingBtn: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

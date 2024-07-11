@@ -47,6 +47,10 @@ public class PlayerController : MonoBehaviour
 
     public bool KnockFromRight;
 
+    public AudioClip footstep;
+    public AudioClip jumpSoundE;
+    public AudioClip fallSoundE;
+
     public void setCanControl()
     {
         canControl = true;
@@ -245,7 +249,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.tag == "Ground")
         {
-
+            FallSound();
         }
         if (collision.gameObject.tag == "Trap")
         {
@@ -300,6 +304,21 @@ public class PlayerController : MonoBehaviour
         spriteLibrary.RefreshSpriteResolvers();
     }
     
+    public void FootStep()
+    {
+        SoundController.Instance.PlaySound(footstep);
+    }
+
+    public void JumpSound()
+    {
+        SoundController.Instance.PlaySound(jumpSoundE);
+    }
+
+    public void FallSound()
+    {
+        SoundController.Instance.PlaySound(fallSoundE);
+    }
+
     //public void CheckFall()
     //{
     //    if (Rigidbody.velocity.y < 0)

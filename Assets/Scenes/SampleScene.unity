@@ -22042,9 +22042,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 402335823}
     - target: {fileID: 1632127064358003669, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
+      propertyPath: footstep
+      value: 
+      objectReference: {fileID: 8300000, guid: 20c5b1ed88051664098b4592ee616a94, type: 3}
+    - target: {fileID: 1632127064358003669, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
       propertyPath: LastPoint
       value: 
       objectReference: {fileID: 221186543}
+    - target: {fileID: 1632127064358003669, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
+      propertyPath: fallSoundE
+      value: 
+      objectReference: {fileID: 8300000, guid: b4f43f91f652a534b9f7573b4f944333, type: 3}
+    - target: {fileID: 1632127064358003669, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
+      propertyPath: jumpSoundE
+      value: 
+      objectReference: {fileID: 8300000, guid: 02721e5ddf0094841a5e9c50eff9de5c, type: 3}
     - target: {fileID: 1632127064358003669, guid: 1403427f69b6bd64593200c1c694cfde, type: 3}
       propertyPath: PointinGame
       value: 
