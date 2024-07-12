@@ -110,7 +110,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1395769263
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 10
   m_Sprite: {fileID: 630029794, guid: c6fb6945bf4d5d94e9963f3ddf4b1678, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -280,8 +280,10 @@ MonoBehaviour:
   sizePointCheck: {x: 4.2, y: 0.7}
   CheckposPlayer: {fileID: 3275758473951845251}
   sizeCheckPosPlayer: {x: 7.5, y: 1.7}
+  hitSoundE: {fileID: 8300000, guid: cb9c9f32170425b419608c7f0da2f6b7, type: 3}
   health: 1
   RunDust: {fileID: 2983935094590890357}
+  runSound: {fileID: 8300000, guid: 20c5b1ed88051664098b4592ee616a94, type: 3}
 --- !u!1 &3275758473951845251
 GameObject:
   m_ObjectHideFlags: 0

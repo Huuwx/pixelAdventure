@@ -19,7 +19,7 @@ public class FruitController : MonoBehaviour
         {
             PlayerController.Pointn += Point;
             animator.SetTrigger("Collected");
-            //SoundController.Instance.PlaySound(eatFruit);
+            SoundController.Instance.PlaySound(eatFruit);
         }
     }
 

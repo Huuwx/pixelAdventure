@@ -24,13 +24,15 @@ public class EnemyController : MonoBehaviour
     protected Rigidbody2D rigid;
     protected Animator animator;
 
+    public AudioClip hitSoundE;
+
     public float health;
     public float Health
     {
         set
         {
-            //animator.SetTrigger("IsTakeDamage");
-            Debug.Log(value);
+            HitSoundE();
+            Debug.Log("-1");
             health = value;
             if (health <= 0)
             {
@@ -56,9 +58,9 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
         Debug.Log("ga chet");
     }
-    public void minusHP()
+    public void minusHP(float damage)
     {
-        health -= 1;
+        Health -= damage;
     }
 
     public virtual void Movement()
@@ -175,5 +177,10 @@ public class EnemyController : MonoBehaviour
             }
             PlayerController.Instance.Health -= 1;
         }
+    }
+
+    public void HitSoundE()
+    {
+        SoundController.Instance.PlaySound(hitSoundE);
     }
 }

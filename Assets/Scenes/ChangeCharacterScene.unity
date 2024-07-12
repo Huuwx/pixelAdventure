@@ -1142,12 +1142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a88451787ad5dc4787e849ebdbe8a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteLibraryAssets:
-  - {fileID: 7108339969198208228, guid: 846341317261b8246b7b7b71c2a3f2a9, type: 3}
-  - {fileID: 7108339969198208228, guid: ee0d5d897ed929343afec1162e8dc164, type: 3}
   panel: {fileID: 0}
   panelDoneGame: {fileID: 0}
+  panelChangeCharacter: {fileID: 0}
   SettingBtn: {fileID: 0}
+  startSound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: 31579ec88be387249b1d0cd81cef974c, type: 3}
+  chooseCharacterSound: {fileID: 8300000, guid: c9fb69b01d0dbcf4198f7aaff0b9ac18, type: 3}
 --- !u!4 &1913487427
 Transform:
   m_ObjectHideFlags: 0

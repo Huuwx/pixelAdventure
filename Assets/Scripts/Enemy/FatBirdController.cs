@@ -11,6 +11,8 @@ public class FatBirdController : EnemyController
     public Vector3 HomePos;
     bool isNotHome;
 
+    public AudioClip fallSound;
+
     protected override void Start()
     {
         base.Start();
@@ -49,6 +51,7 @@ public class FatBirdController : EnemyController
         base.OnCollisionEnter2D(collision);
         if(collision.gameObject.tag == "Ground")
         {
+            FallSound();
             CreateFallDust();
             isMoving = false;
             animator.SetBool("IsMoving", isMoving);
@@ -57,6 +60,7 @@ public class FatBirdController : EnemyController
         }
         else if(collision.gameObject.tag == "Player")
         {
+            FallSound();
             CreateFallDust();
             isMoving = false;
             animator.SetBool("IsMoving", isMoving);
@@ -89,5 +93,10 @@ public class FatBirdController : EnemyController
     public void CreateFallDust()
     {
         FallDust.Play();
+    }
+
+    public void FallSound()
+    {
+        SoundController.Instance.PlaySound(fallSound);
     }
 }

@@ -47,9 +47,14 @@ public class PlayerController : MonoBehaviour
 
     public bool KnockFromRight;
 
+    public float damage = 1;
+
     public AudioClip footstep;
     public AudioClip jumpSoundE;
+    public AudioClip jumpTrampoline;
     public AudioClip fallSoundE;
+    public AudioClip hurtSound;
+    
 
     public void setCanControl()
     {
@@ -317,6 +322,16 @@ public class PlayerController : MonoBehaviour
     public void FallSound()
     {
         SoundController.Instance.PlaySound(fallSoundE);
+    }
+
+    public void HurtSound()
+    {
+        SoundController.Instance.PlaySound(hurtSound);
+    }
+
+    public void JumpTrampolineSound()
+    {
+        SoundController.Instance.PlaySound(jumpTrampoline);
     }
 
     //public void CheckFall()

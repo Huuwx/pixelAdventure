@@ -71,6 +71,7 @@ public class DuckController : EnemyController
     public void Jump()
     {
         animator.SetTrigger("Jump");
+        CreateJumpDust();
         rigid.velocity = new Vector2(JumpForceX, JumpForceY);
     }
 

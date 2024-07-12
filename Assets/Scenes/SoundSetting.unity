@@ -787,7 +787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sources: []
-  soundeffects: []
 --- !u!1 &937414169
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,6 +2324,9 @@ MonoBehaviour:
   panelDoneGame: {fileID: 0}
   panelChangeCharacter: {fileID: 0}
   SettingBtn: {fileID: 0}
+  startSound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: 31579ec88be387249b1d0cd81cef974c, type: 3}
+  chooseCharacterSound: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

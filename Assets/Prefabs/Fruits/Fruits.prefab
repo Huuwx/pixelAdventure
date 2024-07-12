@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1238049423
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 5
   m_Sprite: {fileID: -2078000247, guid: 066c0f8c429a5074cbeb06796fa0b25e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -167,7 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d3459aa05985241bdf4b51eeb8f0df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eatFruit: {fileID: 0}
+  eatFruit: {fileID: 8300000, guid: 43c409b5b75613a4d89b80df0667f2e8, type: 3}
+  Point: 1
 --- !u!114 &3126194137373221031
 MonoBehaviour:
   m_ObjectHideFlags: 0

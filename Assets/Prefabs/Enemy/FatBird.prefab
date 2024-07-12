@@ -112,7 +112,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1395769263
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 10
   m_Sprite: {fileID: 603817490, guid: 2b2b6db93e9ccb8458a0bbce65329950, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -282,11 +282,13 @@ MonoBehaviour:
   sizePointCheck: {x: 0, y: 0}
   CheckposPlayer: {fileID: 1422693070402975208}
   sizeCheckPosPlayer: {x: 1.71, y: 4.42}
+  hitSoundE: {fileID: 8300000, guid: cb9c9f32170425b419608c7f0da2f6b7, type: 3}
   health: 1
   FlyDustLeft: {fileID: 6494801793446666856}
   FlyDustRight: {fileID: 5260066695915994643}
   FallDust: {fileID: 7142074327487049115}
   HomePos: {x: 0, y: 0, z: 0}
+  fallSound: {fileID: 8300000, guid: 2dc7e549c7c96aa41ac2d41f76fe0241, type: 3}
 --- !u!1 &6234656011540211089
 GameObject:
   m_ObjectHideFlags: 0

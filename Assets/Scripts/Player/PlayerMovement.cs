@@ -82,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && countJump < 2)
         {
+            PlayerController.Instance.JumpSound();
             JumpA();
             if (countJump == 1)
             {
@@ -105,31 +106,11 @@ public class PlayerMovement : MonoBehaviour
             IsMoving = true;
             if (horizontal > 0.01f)
             {
-                movementSpeedType[0].speed = 0.1f;
-                movementSpeedType[1].speed = 0.2f;
-                movementSpeedType[2].speed = 0.3f;
-                movementSpeedType[3].speed = 0.4f;
-                movementSpeedType[4].speed = 0.5f;
-                movementSpeedType[5].speed = 0.6f;
-                movementSpeedType[6].speed = 0.7f;
-                movementSpeedType[7].speed = 0.8f;
-                movementSpeedType[8].speed = 0.9f;
-                movementSpeedType[9].speed = 1f;
                 transform.localScale = Vector3.one;
                 WallJumpForce = -0.5f;
             }
             else if (horizontal < -0.01f)
             {
-                movementSpeedType[0].speed = -0.1f;
-                movementSpeedType[1].speed = -0.2f;
-                movementSpeedType[2].speed = -0.3f;
-                movementSpeedType[3].speed = -0.4f;
-                movementSpeedType[4].speed = -0.5f;
-                movementSpeedType[5].speed = -0.6f;
-                movementSpeedType[6].speed = -0.7f;
-                movementSpeedType[7].speed = -0.8f;
-                movementSpeedType[8].speed = -0.9f;
-                movementSpeedType[9].speed = -1f;
                 transform.localScale = new Vector3(-1, 1, 1);
                 WallJumpForce = 0.5f;
             }

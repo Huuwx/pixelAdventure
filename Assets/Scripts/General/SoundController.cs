@@ -10,10 +10,8 @@ public class SoundController : MonoBehaviour
 
 
     [SerializeField] private List<AudioClip> sources = new List<AudioClip>();
-    [SerializeField] private List<AudioClip> soundeffects = new List<AudioClip>();
 
     public List<AudioClip> Sources { get =>  sources; }
-    public List<AudioClip> Soundeffects { get => soundeffects; }
 
     private AudioSource audiosource;
 

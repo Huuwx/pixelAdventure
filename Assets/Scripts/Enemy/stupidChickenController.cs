@@ -6,6 +6,8 @@ public class stupidChickenController : EnemyController
 {
     public ParticleSystem RunDust;
 
+    public AudioClip runSound;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -22,5 +24,10 @@ public class stupidChickenController : EnemyController
     public void createRunDust()
     {
         RunDust.Play();
+    }
+
+    public void RunSound()
+    {
+        SoundController.Instance.PlaySound(runSound);
     }
 }

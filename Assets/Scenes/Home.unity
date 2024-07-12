@@ -396,6 +396,9 @@ MonoBehaviour:
   panelDoneGame: {fileID: 0}
   panelChangeCharacter: {fileID: 0}
   SettingBtn: {fileID: 0}
+  startSound: {fileID: 8300000, guid: e847b8d2ab049f14aa8a00f7b93f83dd, type: 3}
+  clickSound: {fileID: 8300000, guid: 31579ec88be387249b1d0cd81cef974c, type: 3}
+  chooseCharacterSound: {fileID: 8300000, guid: c9fb69b01d0dbcf4198f7aaff0b9ac18, type: 3}
 --- !u!1 &333551273
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,7 +669,6 @@ MonoBehaviour:
   sources:
   - {fileID: 8300000, guid: a03d5b480dd29a54b869b737e6ac345b, type: 3}
   - {fileID: 8300000, guid: 36c4657bbd56a794e987634fe8480f30, type: 3}
-  soundeffects: []
 --- !u!4 &590976333
 Transform:
   m_ObjectHideFlags: 0
