@@ -13,6 +13,8 @@ public class DuckController : EnemyController
     public Vector2 sizePointGroundCheck;
 
     public ParticleSystem JumpDust;
+
+    public AudioClip jumpSound;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -104,5 +106,10 @@ public class DuckController : EnemyController
     public void CreateJumpDust()
     {
         JumpDust.Play();
+    }
+
+    public void JumpSound()
+    {
+        PlaySound(jumpSound);
     }
 }

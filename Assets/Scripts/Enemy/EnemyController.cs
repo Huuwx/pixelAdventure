@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     protected Rigidbody2D rigid;
     protected Animator animator;
 
+    private AudioSource audioSource;
     public AudioClip hitSoundE;
 
     public float health;
@@ -46,6 +47,7 @@ public class EnemyController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Defeated()
@@ -179,8 +181,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
     public void HitSoundE()
     {
-        SoundController.Instance.PlaySound(hitSoundE);
+        PlaySound(hitSoundE);
     }
 }

@@ -28,6 +28,6 @@ public class stupidChickenController : EnemyController
 
     public void RunSound()
     {
-        SoundController.Instance.PlaySound(runSound);
+        PlaySound(runSound);
     }
 }

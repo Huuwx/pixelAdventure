@@ -49,11 +49,13 @@ public class PlayerController : MonoBehaviour
 
     public float damage = 1;
 
+    private AudioSource audioSource;
     public AudioClip footstep;
     public AudioClip jumpSoundE;
     public AudioClip jumpTrampoline;
     public AudioClip fallSoundE;
     public AudioClip hurtSound;
+    public AudioClip eatFruit;
     
 
     public void setCanControl()
@@ -88,6 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
         Pointn = 0;
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         animator.SetTrigger("Appearing");
@@ -223,22 +226,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireCube(PointGroundCheck.transform.position, new Vector3(sizeGroundCheck.x, sizeGroundCheck.y, 1f));
     }
 
-    void CheckCharacter()
-    {
-        if (NinjaFrog == true)
-        {
-            CharacterSelection.Instance.SetActiveCharacter(true, false, false);
-        }
-        else if (VirtualGuy == true)
-        {
-            CharacterSelection.Instance.SetActiveCharacter(false, true, false);
-        }
-        else
-        {
-            CharacterSelection.Instance.SetActiveCharacter(false, false, true);
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall" && grounded == false)
@@ -308,30 +295,40 @@ public class PlayerController : MonoBehaviour
         // Gọi hàm này để cập nhật ngay lập tức
         spriteLibrary.RefreshSpriteResolvers();
     }
-    
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
     public void FootStep()
     {
-        SoundController.Instance.PlaySound(footstep);
+        PlaySound(footstep);
     }
 
     public void JumpSound()
     {
-        SoundController.Instance.PlaySound(jumpSoundE);
+        PlaySound(jumpSoundE);
     }
 
     public void FallSound()
     {
-        SoundController.Instance.PlaySound(fallSoundE);
+        PlaySound(fallSoundE);
     }
 
     public void HurtSound()
     {
-        SoundController.Instance.PlaySound(hurtSound);
+        PlaySound(hurtSound);
     }
 
     public void JumpTrampolineSound()
     {
-        SoundController.Instance.PlaySound(jumpTrampoline);
+        PlaySound(jumpTrampoline);
+    }
+
+    public void EatFruit()
+    {
+        PlaySound(eatFruit);
     }
 
     //public void CheckFall()

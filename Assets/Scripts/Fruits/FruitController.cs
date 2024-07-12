@@ -5,7 +5,6 @@ using UnityEngine;
 public class FruitController : MonoBehaviour
 {
     private Animator animator;
-    public AudioClip eatFruit;
     public int Point = 1;
 
     void Start()
@@ -19,7 +18,7 @@ public class FruitController : MonoBehaviour
         {
             PlayerController.Pointn += Point;
             animator.SetTrigger("Collected");
-            SoundController.Instance.PlaySound(eatFruit);
+            PlayerController.Instance.EatFruit();
         }
     }
 

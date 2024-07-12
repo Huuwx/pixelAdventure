@@ -97,6 +97,6 @@ public class FatBirdController : EnemyController
 
     public void FallSound()
     {
-        SoundController.Instance.PlaySound(fallSound);
+        PlaySound(fallSound);
     }
 }
