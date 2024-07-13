@@ -12,6 +12,7 @@ public class TrapsController : MonoBehaviour
     public float direct;
     public bool MoveX;
     public bool MoveY;
+    public bool changed = true;
     private Animator animator;
 
     public GameObject PointGroundcheck;
@@ -27,7 +28,7 @@ public class TrapsController : MonoBehaviour
     void Update()
     {
         SawMove();
-        if (MoveX || MoveY)
+        if ((MoveX && changed) || (MoveY && changed))
         {
             ChangeMove();
         }
@@ -72,13 +73,22 @@ public class TrapsController : MonoBehaviour
     public void ChangeX()
     {
         MoveX = true;
+        changed = false;
         direct *= -1;
+        Invoke(nameof(SetChanged), 2f);
     }
 
     public void ChangeY()
     {
         MoveY = true;
+        changed = false;
         direct *= -1;
+        Invoke(nameof(SetChanged), 2f);
+    }
+
+    public void SetChanged()
+    {
+        changed = true;
     }
 
     private void OnDrawGizmos()
