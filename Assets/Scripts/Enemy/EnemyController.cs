@@ -150,7 +150,6 @@ public class EnemyController : MonoBehaviour
         }
         if (colliders.Length == 2)
         {
-            Debug.Log("dung lai");
             Movdirection = 0f;
             isMoving = false;
             animator.SetBool("IsMoving", isMoving);

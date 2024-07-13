@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip fallSoundE;
     public AudioClip hurtSound;
     public AudioClip eatFruit;
+    public AudioClip gameOver;
+    public AudioClip gameWin;
+    public AudioClip goalTap;
     
 
     public void setCanControl()
@@ -174,8 +177,9 @@ public class PlayerController : MonoBehaviour
 
     public void Pause()
     {
+        GameOver();
         LastTxt.text = "Game Over";
-        LastTxt.fontSize = 102;
+        LastTxt.fontSize = 69;
         Time.timeScale = 0;
         LastPoint.text = Pointn.ToString();
         PointinGame.SetActive(false);
@@ -185,7 +189,7 @@ public class PlayerController : MonoBehaviour
     public void Win()
     {
         LastTxt.text = "Congratulations !";
-        LastTxt.fontSize = 70;
+        LastTxt.fontSize = 38;
         Time.timeScale = 0;
         LastPoint.text = Pointn.ToString();
         PointinGame.SetActive(false);
@@ -262,6 +266,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Door")
         {
+            GameWin();
             horizontal = 0;
             canControl = false;
             animator.SetTrigger("Desappearing");
@@ -329,6 +334,21 @@ public class PlayerController : MonoBehaviour
     public void EatFruit()
     {
         PlaySound(eatFruit);
+    }
+
+    public void GameOver()
+    {
+        PlaySound(gameOver);
+    }
+
+    public void GameWin()
+    {
+        PlaySound(gameWin);
+    }
+
+    public void GoalTap()
+    {
+        PlaySound(goalTap);
     }
 
     //public void CheckFall()

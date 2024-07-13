@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DuckController : EnemyController
 {
-    public int countJump = 0;
     public float JumpForceY;
     public float JumpForceX;
     private bool Fall;
@@ -24,32 +23,19 @@ public class DuckController : EnemyController
     protected void FixedUpdate()
     {
         CheckFall();
-        JumpMovement();
-        //if (Fall == false)
-        //{
-        //    CheckWall();
-        //}
     }
 
-    public void JumpMovement()
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        Collider2D[] colliers = Physics2D.OverlapBoxAll(PointGroundCheck.transform.position, sizePointGroundCheck, 0);
-        foreach (Collider2D col in colliers)
+        base.OnCollisionEnter2D (collision);
+        if(collision.gameObject.tag == "Ground")
         {
-            if (col.gameObject.tag == "Ground" && Fall == false)
+            JumpSound();
+            animator.SetTrigger("JumpAnticipation");
+            CreateJumpDust();
+            if (turnBack == true)
             {
-                //if(countJump == 0)
-                //{
-                //    Jump();
-                //    countJump += 1;
-                //}
-                //Invoke(nameof(resetCountJump), 5f);
-                animator.SetTrigger("JumpAnticipation");
-                CreateJumpDust();
-                if (turnBack == true)
-                {
-                    CheckWall();
-                }
+                CheckWall();
             }
         }
     }
@@ -90,11 +76,6 @@ public class DuckController : EnemyController
             Fall = false;
             animator.SetBool("Fall", Fall);
         }
-    }
-
-    public void resetCountJump()
-    {
-        countJump = 0;
     }
 
     protected override void OnDrawGizmos()

@@ -16,6 +16,7 @@ public class GoalController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            PlayerController.Instance.GoalTap();
             animator.SetTrigger("Pressed");
             PlayerController.Pointn += 10;
         }
