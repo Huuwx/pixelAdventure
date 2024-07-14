@@ -8,10 +8,9 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 {
     private static PlayerMovement instance;
-    public MovementSpeedType[] movementSpeedType;
-
     public static PlayerMovement Instance { get => instance; }
 
+    public MovementSpeedType[] movementSpeedType;
     private bool IsMoving = false;
     public bool getIsMoving()
     {

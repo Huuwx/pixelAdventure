@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip gameOver;
     public AudioClip gameWin;
     public AudioClip goalTap;
-    
+
 
     public void setCanControl()
     {
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!canControl) return;
+        if (!canControl) return;
 
         horizontal = PlayerMovement.Instance.GetMovInput();
         PlayerMovement.Instance.AMoving();
@@ -184,6 +184,7 @@ public class PlayerController : MonoBehaviour
         LastPoint.text = Pointn.ToString();
         PointinGame.SetActive(false);
         panelDoneGame.SetActive(true);
+        PlayerPrefsData.Instance.SaveLastPoint(Pointn);
     }
 
     public void Win()
@@ -195,6 +196,7 @@ public class PlayerController : MonoBehaviour
         PointinGame.SetActive(false);
         panelDoneGame.SetActive(true);
         gameObject.SetActive(false);
+        PlayerPrefsData.Instance.SaveLastPoint(Pointn);
     }
 
     public void TakeDamage()
@@ -264,7 +266,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Door")
+        if (collision.gameObject.tag == "Door")
         {
             GameWin();
             horizontal = 0;
@@ -285,7 +287,7 @@ public class PlayerController : MonoBehaviour
 
     public void CreateRunDust()
     {
-        
+
         RunDust.Play();
     }
     public void CreateFallDust()
@@ -296,7 +298,17 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeCharacter()
     {
-        spriteLibrary.spriteLibraryAsset = spriteLibraryAssets[ValueNeverDestroy.Instance.indexCharacter];
+        spriteLibrary.spriteLibraryAsset = spriteLibraryAssets[PlayerPrefsData.Instance.LoadIndexCharacter()];
+        if (PlayerPrefsData.Instance.LoadIndexCharacter() == 0)
+        {
+            health = PlayerPrefsData.Instance.getHealthC1();
+            damage = PlayerPrefsData.Instance.getDamageC1();
+        }
+        else if (PlayerPrefsData.Instance.LoadIndexCharacter() == 1)
+        {
+            health = PlayerPrefsData.Instance.getHealthC2();
+            damage = PlayerPrefsData.Instance.getDamageC2();
+        }
         // Gọi hàm này để cập nhật ngay lập tức
         spriteLibrary.RefreshSpriteResolvers();
     }

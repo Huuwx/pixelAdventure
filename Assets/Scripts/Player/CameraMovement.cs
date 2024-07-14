@@ -15,22 +15,6 @@ public class CameraMovement : MonoBehaviour
         //CheckTarget();
     }
 
-    void CheckTarget()
-    {
-        if (PlayerController.NinjaFrog == true)
-        {
-            target = CharacterSelection.Instance.Character[0].transform;
-        }
-        else if (PlayerController.VirtualGuy == true)
-        {
-            target = CharacterSelection.Instance.Character[1].transform;
-        }
-        else
-        {
-            target = CharacterSelection.Instance.Character[2].transform;
-        }
-    }
-
     // Update is called once per frame
     void LateUpdate()
     {

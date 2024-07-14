@@ -90,6 +90,13 @@ public class HomeController : MonoBehaviour
         SceneManager.LoadScene(SceneName);
     }
 
+    public void AchievementScene()
+    {
+        SceneName = "AchievementScene";
+        ClickSound();
+        SceneManager.LoadScene(SceneName);
+    }
+
     public void ChangeCharacterScene()
     {
         SceneName = "ChangeCharacterScene";
@@ -101,14 +108,14 @@ public class HomeController : MonoBehaviour
     {
         Debug.Log("0");
         ChooseCharacterSound();
-        ValueNeverDestroy.Instance.indexCharacter = 0;
+        PlayerPrefsData.Instance.SaveIndexCharacter(0);
     }
 
     public void MaskDudeBtn()
     {
         Debug.Log("1");
         ChooseCharacterSound();
-        ValueNeverDestroy.Instance.indexCharacter = 1;
+        PlayerPrefsData.Instance.SaveIndexCharacter(1);
     }
 
     public void StartSound()
@@ -122,5 +129,10 @@ public class HomeController : MonoBehaviour
     public void ChooseCharacterSound()
     {
         SoundController.Instance.PlaySound(chooseCharacterSound);
+    }
+
+    public void ChangeSceneAnimation()
+    {
+
     }
 }
