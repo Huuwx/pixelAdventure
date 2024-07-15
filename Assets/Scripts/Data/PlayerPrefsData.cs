@@ -68,9 +68,4 @@ public class PlayerPrefsData : MonoBehaviour
     {
         return PlayerPrefs.GetInt("LPoint");
     }
-
-    public void DisplayLPoint()
-    {
-        Debug.Log(PlayerPrefs.GetInt("LPoint"));
-    }
 }

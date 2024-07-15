@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -26,16 +27,22 @@ public class SceneController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public IEnumerator SceneLoad()
+    public void LoadScene(string sceneName)
     {
         gameObject.SetActive(true);
-        animator.SetTrigger("Current");
-        yield return new WaitForSeconds(1.5f);
-        animator.SetTrigger("Next");
+        StartCoroutine(SceneLoad(sceneName));
     }
 
-    public void setActiveImg()
+    IEnumerator SceneLoad(string sceneName)
     {
-        gameObject.SetActive(false);
+        animator.SetTrigger("End");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(sceneName);
+        animator.SetTrigger("Start");
+    }
+
+    public void SetActiveLC()
+    {
+        gameObject.SetActive (false);
     }
 }

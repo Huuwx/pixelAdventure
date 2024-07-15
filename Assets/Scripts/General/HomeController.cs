@@ -37,13 +37,15 @@ public class HomeController : MonoBehaviour
     public void StartBtn()
     {
         ClickSound();
-        SceneManager.LoadScene("LevelMenu");
+        SceneName = "LevelMenu";
+        SceneController.Instance.LoadScene(SceneName);
     }
 
     public void SoundSettingScene()
     {
         ClickSound();
-        SceneManager.LoadScene("SoundSetting");
+        SceneName = "SoundSetting";
+        SceneController.Instance.LoadScene(SceneName);
     }
 
     public void ExitBtn()
@@ -72,14 +74,15 @@ public class HomeController : MonoBehaviour
     {
         SceneName = SceneManager.GetActiveScene().name;
         ClickSound();
-        SceneManager.LoadScene(SceneName);
+        SceneController.Instance.LoadScene(SceneName);
         Time.timeScale = 1;
     }
 
     public void BackHomeScene()
     {
-        SceneManager.LoadScene("Home");
+        SceneName = "Home";
         ClickSound();
+        SceneController.Instance.LoadScene(SceneName);
         Time.timeScale = 1;
     }
 
@@ -87,21 +90,21 @@ public class HomeController : MonoBehaviour
     {
         SceneName = "SampleScene";
         StartSound();
-        SceneManager.LoadScene(SceneName);
+        SceneController.Instance.LoadScene(SceneName);
     }
 
     public void AchievementScene()
     {
         SceneName = "AchievementScene";
         ClickSound();
-        SceneManager.LoadScene(SceneName);
+        SceneController.Instance.LoadScene(SceneName);
     }
 
     public void ChangeCharacterScene()
     {
         SceneName = "ChangeCharacterScene";
         ClickSound();
-        SceneManager.LoadScene(SceneName);
+        SceneController.Instance.LoadScene(SceneName);
     }
 
     public void NinJaFrogBtn()
@@ -129,10 +132,5 @@ public class HomeController : MonoBehaviour
     public void ChooseCharacterSound()
     {
         SoundController.Instance.PlaySound(chooseCharacterSound);
-    }
-
-    public void ChangeSceneAnimation()
-    {
-
     }
 }
