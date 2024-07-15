@@ -173,7 +173,11 @@ public class EnemyController : MonoBehaviour
             {
                 PlayerController.Instance.KnockFromRight = false;
             }
-            PlayerController.Instance.Health -= 1;
+            var healthComponent = collision.gameObject.GetComponent<Health>();
+            if (healthComponent != null)
+            {
+                healthComponent.TakeDamage(1);
+            }
         }
     }
 

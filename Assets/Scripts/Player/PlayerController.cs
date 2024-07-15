@@ -145,24 +145,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public float health;
-    public float Health
+    //public float health;
+    //public float Health
+    //{
+    //    set
+    //    {
+    //        animator.SetTrigger("TakeDamage");
+    //        Debug.Log(value);
+    //        health = value;
+    //        if (health <= 0)
+    //        {
+    //            Defeated();
+    //            //if(grounded == true)
+    //            //{
+    //            //    Time.timeScale = 0;
+    //            //}
+    //        }
+    //    }
+    //    get { return health; }
+    //}
+    
+    public void TakeDamageAnimation()
     {
-        set
-        {
-            animator.SetTrigger("TakeDamage");
-            Debug.Log(value);
-            health = value;
-            if (health <= 0)
-            {
-                Defeated();
-                //if(grounded == true)
-                //{
-                //    Time.timeScale = 0;
-                //}
-            }
-        }
-        get { return health; }
+        animator.SetTrigger("TakeDamage");
     }
 
     public void Defeated()
@@ -260,7 +265,11 @@ public class PlayerController : MonoBehaviour
             {
                 KnockFromRight = false;
             }
-            Health -= 1;
+            var healthComponent = gameObject.GetComponent<Health>();
+            if (healthComponent != null)
+            {
+                healthComponent.TakeDamage(1);
+            }
         }
     }
 
@@ -299,14 +308,15 @@ public class PlayerController : MonoBehaviour
     public void ChangeCharacter()
     {
         spriteLibrary.spriteLibraryAsset = spriteLibraryAssets[PlayerPrefsData.Instance.LoadIndexCharacter()];
+        var healthComponent = gameObject.GetComponent<Health>();
         if (PlayerPrefsData.Instance.LoadIndexCharacter() == 0)
         {
-            health = PlayerPrefsData.Instance.getHealthC1();
+            healthComponent.maxHealth = PlayerPrefsData.Instance.getHealthC1();
             damage = PlayerPrefsData.Instance.getDamageC1();
         }
         else if (PlayerPrefsData.Instance.LoadIndexCharacter() == 1)
         {
-            health = PlayerPrefsData.Instance.getHealthC2();
+            healthComponent.maxHealth = PlayerPrefsData.Instance.getHealthC2();
             damage = PlayerPrefsData.Instance.getDamageC2();
         }
         // Gọi hàm này để cập nhật ngay lập tức

@@ -17,7 +17,11 @@ public class checkGround : MonoBehaviour
         }
         if (collision.gameObject.tag == "Dead")
         {
-            PlayerController.Instance.Health -= 10000;
+            var healthComponent = gameObject.GetComponent<Health>();
+            if (healthComponent != null)
+            {
+                healthComponent.TakeDamage(100000);
+            }
         }
     }
 
