@@ -1,4 +1,3 @@
-using EasyParallax;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private static PlayerMovement instance;
     public static PlayerMovement Instance { get => instance; }
 
-    public MovementSpeedType[] movementSpeedType;
     private bool IsMoving = false;
     public bool getIsMoving()
     {

@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public static Action OnPlayerDamaged;
+    //public HealthHeartsBar heartsBar;
 
     public int maxHealth = 3;
     public int currentHealth;
@@ -12,15 +15,18 @@ public class Health : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        //heartsBar.DrawHearts();
     }
 
     public void TakeDamage(int damage)
     {
         PlayerController.Instance.TakeDamageAnimation();
         currentHealth -= damage;
+        OnPlayerDamaged?.Invoke();
         
         if(currentHealth <= 0)
         {
+            currentHealth = 0;
             PlayerController.Instance.Defeated();
         }
     }

@@ -194,6 +194,7 @@ public class PlayerController : MonoBehaviour
 
     public void Win()
     {
+        GameWin();
         LastTxt.text = "Congratulations !";
         LastTxt.fontSize = 38;
         Time.timeScale = 0;
@@ -277,7 +278,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Door")
         {
-            GameWin();
             horizontal = 0;
             canControl = false;
             animator.SetTrigger("Desappearing");

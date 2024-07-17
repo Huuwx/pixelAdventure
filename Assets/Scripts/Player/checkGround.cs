@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class checkGround : MonoBehaviour
 {
+    public Health playerHealth;
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -17,11 +18,7 @@ public class checkGround : MonoBehaviour
         }
         if (collision.gameObject.tag == "Dead")
         {
-            var healthComponent = gameObject.GetComponent<Health>();
-            if (healthComponent != null)
-            {
-                healthComponent.TakeDamage(100000);
-            }
+            playerHealth.TakeDamage(1000000);
         }
     }
 
