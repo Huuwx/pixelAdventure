@@ -92,6 +92,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         instance = this;
+        
+       
+        //CheckCharacter();
+    }
+
+    private void Awake()
+    {
         Pointn = 0;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -106,7 +113,6 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("SpriteLibrary component không tồn tại trên GameObject.");
         }
         ChangeCharacter();
-        //CheckCharacter();
     }
 
     // Update is called once per frame
